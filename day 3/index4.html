@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            background: #f4f4f4;
+        }
+        header{
+            background: #1e3a8a;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+        }
+        nav a{
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        .hero{
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: linear-gradient(135deg, #2563ed,#06b6d4);
+            color: white;
+        }
+        .hero button{
+            margin-top: 20px;
+            padding: 12px 30px;
+            border: none;
+            background: white;
+            color: #2563ed;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+        .services{
+            width: 90%;
+            margin: 50px auto;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+        }
+        .card{
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow:0 5px 15px rgba(0,0,0,.15);
+            transition: 3s;
+            text-align: center;
+        }
+        .card:hover{
+            transform: translate(-8px);
+        }
+        footer{
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>CodeMaster</h2>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Service</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+    <section class="hero">
+    <h1>Improve Your Coding Speed</h1>
+    <p>Practice typing complete websites every day </p>
+    <button>Start Learning</button>
+    </section>
+    <section class="services">
+    <div class="card">
+        <h2>HTML</h2>
+        <p>Bulid semantic web pages.</p>
+    </div>
+    <div class="card">
+    <h2>CSS</h2>
+    <p>Create responsive layouts.</p>
+    </div>
+    <div class="card">
+        <h2>JavaScript</h2>
+        <p>Add interactivity</p>
+    </div>
+    </section>
+    <footer>
+        <p>&copy; 2026 CodeMaster. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

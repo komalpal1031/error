@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Notes App</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+           background:linear-gradient(135deg,#4facfe,#00f2fe);
+           padding: 40px; 
+        }
+        .container{
+            width: 900px;
+            max-width: 100%;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow:0 15px 35px rgba(0,0,0,.2);
+        }
+        h1{
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .input{
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        textarea{
+            flex: 1;
+            height: 120px;
+            padding: 15px;
+            font-size: 16px;
+            resize: none;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            outline: none;
+        }
+        button{
+            padding: 15px 25px;
+            background: #0d6efd;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover{
+            background: #084298;
+        }
+        .notes{
+            display: grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+             gap: 20px;
+        }
+        .note{
+            background: #fff9c4;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow:0 5px 15px rgba(0,0,0,.15);
+            position: relative; 
+        }
+        .note p{
+            white-space: pre-wrap;
+            margin-bottom: 20px;
+        }
+        .delete{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: red;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Note App</h1>
+    <div class="input">
+        <textarea  id="noteText" placeholder="Write your note..."></textarea>
+        <button onclick="addNote()">Add Note</button>
+    </div>
+    <div class="notes" id="notes"></div>
+  </div>  
+  <script>
+    let notes =JSON.parse(localStorage.getItem("notes")) ||[];
+    function saveNotes(){
+        localStorage.setItem(
+         "notes",
+         JSON.stringify(notes)
+        );
+    }
+    function displayNotes(){
+        let container=document.getElementById("notes");
+        container.innerHTML="";
+        notes.forEach(function(note,index){
+        let div=document.createElement("div");
+        div.className="note";
+        div.innerHTML=
+        "<button class='delete' onclick='deleteNote("+index+")'>X</button>"+
+        "<p>"+note+"</p>";
+        container.appendChild(div);
+        });
+    }
+    function addNote(){
+        let text=document.getElementById("noteText").value.trim();
+        if(text===""){
+            alert("Enter a note");
+            return;
+        }
+        notes.push(text);
+        saveNotes();
+        displayNotes();
+        document.getElementById("noteText").value="";
+    }
+    function deleteNote(index){
+        notes.splice(index,1);
+        saveNote();
+        displayNotes();
+    }
+    displayNotes();
+  </script>
+</body>
+</html>

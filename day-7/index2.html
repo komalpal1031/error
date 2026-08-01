@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background:linear-gradient(135deg,#4facfe,#00c6fb);
+        }
+        .container{
+            width: 600px;
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow:0 20px 40px rgba(0,0,0,.2);
+        }
+        h1{
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        #question{
+            font-size: 24px;
+            margin-bottom: 25px;
+        }
+        .option{
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            background: white;
+            transition: .3s;
+            text-align: left;
+            font-size: 17px;
+        }
+        .option:hover{
+            background: #f1f1f1;
+        }
+        .correct{
+            background: #28a745 !important;
+            color: white;
+        }
+        .wrong{
+            background: #dc3545 !important;
+            color: white;
+        }
+        #next{
+            margin-top: 25px;
+            width: 100%;
+            padding: 15px;
+            background: #0d6efd;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            display: none;
+        }
+        #score{
+            text-align: center;
+            font-size: 22px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+   <div class="container">
+    <h1>JavaScript Quiz</h1>
+    <div id="question"></div>
+    <div id="answers"></div>
+    <button id="next">Next Question</button>
+    <div id="score"></div>
+   </div> 
+
+   <!-- js -->
+    <script>
+        const quiz=[
+            {
+                question:"Which language is used for styling web pages?",
+                answers:["HTML","CSS","JavaScript","Python"],
+                correct:1
+            },
+            {
+                question:"Which keyword declares a variable?",
+                answers:["let","style","color","body"],
+                correct:0
+            },
+            {
+                question:"Which method selects an element by ID?",
+                answers:["queryAll()","getEleementById()","createElement()","appendChid()"],
+                correct:1
+            },
+            {
+              question:"JavaScript is mainly used for?",
+              answers:["Database","Styling","Interactivity","Hosting"],
+              correct:2  
+            },
+            {
+                question:"Which symbol is used for comments in JavaScript?",
+                answers:["//","<!-- -->","##","**"],
+                correct:0
+            }
+        ];
+        let currentQuestion=0;
+        let score=0;
+        const question=document.getElementById("question");
+        const answers=document.getElementById("answers");
+        const next=document.getElementById("next");
+        function loadQuestion(){
+            next.style.display="none";
+            answers.innerHTML="";
+            let q=quiz[currentQuestion];
+            question.innerHTML=q.question;
+            q.answers.forEach(function(answer,index){
+                let button=document.createElement("button");
+                button.innerHTML=answer;
+                button.className="option";
+                button.onclick=function(){
+                    checkAnswer(index,button);
+                };
+                answers.appendChild(button);
+            });
+        }
+        function checkAnswer(index,button){
+            let options=document.querySelectorAll(".option");
+            options.forEach(function(btn){
+                btn.disabled=true;
+            });
+            if(index===quiz[currentQuestion].correct){
+                button.classList.add("correct");
+                score++;
+            }
+            else{
+                button.classList.add("wrong");
+                option[quiz[currentQuestion].correct].classList.add("correct");
+            }
+            next.style.display="block";
+        }
+        next.addEventListener("click",function(){
+            currentQuestion++;
+            if(currentQuestion<quiz.length){
+                loadQuestion();
+            }
+            else{
+                question.innerHTML="Quiz Completed! 🎉";
+                answers.innerHTML="";
+                next.style.display="none";
+                document.getElementById("score").innerHTML="Your Score: "+score+" / "+quiz.length;
+            }
+        });
+        loadQuestion();
+    </script>
+</body>
+</html>

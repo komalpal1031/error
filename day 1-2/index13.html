@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bright future School</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+        header{
+            background: #1565c0;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        nav{
+            margin-top: 15px;
+        }
+        nav a{
+            color: white;
+            text-decoration: none;
+            margin: 0 12px;
+            font-weight: bold;
+        }
+        nav a:hover{
+            color: red
+        }
+        section{
+            background: white;
+            width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px lightgray;
+        }
+        h2{
+            color: #1565c0;
+            margin-bottom: 15px;
+        }
+        img{
+            width: 100%;
+            border-radius: 10px;
+        }
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table,th,td{
+            border: 1px solid gray;
+        }
+        th{
+            background: #1565c0;
+            color: white;
+        }
+        th,td{
+            padding: 10px;
+            text-align: center;
+        }
+        form input,
+        form select,
+        form textarea{
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid gray;
+            border-radius: 5px;
+        }
+        button{
+            background: #1565c0;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover{
+            background: #0d47a1;
+        }
+        .notice{
+            background: #fff3cd;
+            border-left: 6px solid orange;
+            padding: 15px;
+        }
+        #principal{
+            background: #e8f5e9;
+        }
+        footer{
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px    ;
+        }
+        </style>
+</head>
+<body>
+    <header>
+        <h1>Bright Future School</h1>
+        <p>Learn today, Lead Tomorrow</p>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Admission</a>
+            <a href="#">Teachers</a>
+            <a href="#">Gallery</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+    <section>
+        <h2>Welcome to out Bright Future School</h2>
+        <img src="images.jpeg" alt="School">
+        <p>Bright future School Provides quality education, mordern classrooms,sports facilities, computer labs, and experoenced teachers.</p>
+    </section>
+    <section class="notice">
+   <h2>Notice Board</h2>
+   <ul>
+    <li>Admission Open for 2027</li>
+    <li>Science Exhibition on 15 August</li>
+    <li>Sports Day Next Month</li>
+    <li>Parent Meeting on Sunday</li>
+   </ul>
+    </section>
+    <section>
+        <h2>Class timetable</h2>
+    <table>
+        <tr>
+            <th>Day</th>
+            <th>Math</th>
+            <th>English</th>
+            <th>Science</th>
+            <th>Computer</th>
+        </tr>
+        <tr>
+            <td>Monday</td>
+            <td>&check;</td>
+            <td>&check;</td>
+            <td>&check;</td>
+            <td>&check;</td>
+        </tr>
+        <tr>
+            <td>tuesday</td>
+            <td>&check;</td>
+            <td>&check;</td>
+            <td>&check;</td>
+            <td>Lab</td>
+        </tr>
+        <tr>
+        <td>Wednesday</td>
+        <td>Maths</td>
+        <td>Englsih</td>
+        <td>Science</td>
+        <td>Games</td>
+        </tr>
+    </table>
+    </section>
+    <section id="principal">
+     <h2>Prinncipal's Message</h2>
+     <p>Education is the foundation of success.Our goal is to help every student grow academically and personally.</p>
+   
+    <h2>Student Admission Form</h2>
+    <form>
+        <label>Student Name</label>
+        <input type="text">
+        <label>Email</label>
+        <input type="email">
+         <label>Phone</label>
+        <input type="tel">
+        <label>Class</label>
+        <select>
+        <option>Class 6</option>
+        <option>Class 7</option>
+        <option>Class 8</option>
+        <option>Class 9</option>
+        <option>Class 10</option>
+        </select>
+        <label>Address</label>
+        <textarea rows="4"></textarea>
+        <button type="submit">Submit Admission Form</button>
+    </form>
+     </section>
+     <section>
+        <h2>School Facilities</h2>
+        <ul>
+            <li>Library</li>
+            <li>Computer Lab</li>
+            <li>Playground</li>
+            <li>School Bus</li>
+            <li>Science Laboratory</li>
+            <li>Activity Hall</li>
+        </ul>
+     </section>
+     <footer>
+        <p>&copy; 2026 Bright Future School </p>
+     </footer>
+</body>
+</html>

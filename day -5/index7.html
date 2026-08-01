@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Restaurant Landing Page</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Courier New', Courier, monospace;
+        scroll-behavior: smooth;
+    }
+    body{
+      background: #fafafa;
+      color: #222;
+    }
+    header{
+        background: #ffffff;
+        box-shadow:0 3px 10px rgba(0,0,0,.08);
+        position: sticky;
+        top: o;
+        z-index: 100;
+    }
+    nav{
+        width: 90%;
+        margin: auto;
+        height: 80px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .logo{
+        font-size: 30px;
+        font-weight: 700;
+        color: #e63946;
+    }
+    nav ul{
+        display: flex;
+        list-style: none;
+        gap: 30px;
+    }
+    nav ul li a{
+        text-decoration: none;
+        color: #222;
+        font-weight: 500;
+        transition: 3s;
+    }
+    nav ul li a:hover{
+        color: #e63946;
+    }
+    .hero{
+        height: 90vh;
+        background:url("https://picsum.photos/1600/900?food") center/cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+    .hero::before{
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background:rgba(0,0,0,.55);
+    }
+    .hero-content{
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: white;
+    }
+    .hero-content h1{
+        font-size: 60px;
+        margin-bottom: 20px;
+    }
+    .hero-content p{
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+    .hero-content button{
+        padding: 15px 35px;
+        background: #e63946;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: 3s;
+    }
+    .hero-content button:hover{
+        background: #c1121f;
+    }
+    section{
+        padding: 80px 10%;
+    }
+    .section-title{
+        text-align: center;
+        font-size: 40px;
+        margin-bottom: 50px;
+    }
+    .cards{
+        display: grid;
+        grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+        gap: 30px;
+    }
+    .card{
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow:0 10px 20px rgba(0,0,0,.1);
+        transition: 3s;
+    }
+    .card img{
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+    }
+    .card-content{
+        padding: 20px;
+    }
+    .card-content h3{
+        margin-bottom: 10px;
+    }
+    .card-content p{
+        color: #666;
+        margin-bottom: 15px;
+    }
+    .price{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .price span{
+        font-size: 24px;
+        font-weight: 700;
+        color: #ed3946;
+    }
+    .price button{
+        padding: 10px 18px;
+        background: #ed3946;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+    .about{
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        flex-wrap: wrap;
+    }
+    .about img{
+        flex: 1;
+        min-height: 300px;
+        width: 100%;
+        border-radius: 15px;
+    }
+    .about-text{
+        flex: 1;
+        min-height: 300px;
+    }
+    .about-text h2{
+        margin-bottom: 20px;
+    }
+    .about-text p{
+        line-height: 1.8;
+        color: #555;
+    }
+    footer{
+        background: #222;
+        color: white;
+        padding: 30px;
+        text-align: center;
+        margin-top: 50px;
+    }
+    .social{
+        margin-top: 20px;
+    }
+    .social i{
+        font-size: 22px;
+        margin: 0 12px;
+        cursor: pointer;
+        transition: 3s;
+    }
+    .social i:hover{
+        color: #ed3946;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                FoodZone
+            </div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Menu</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Taste the best Food</h1>
+            <p>Fresh Ingredients. Fast Delivery. Delicious Taste</p>
+            <button>Order Now</button>
+        </div>
+    </section>
+    <section>
+        <h2 class="section-title">Popular Dishes</h2>
+        <div class="cards">
+            <div class="card">
+              <img src="https://picsum.photos/400/300?pizza"> 
+              <div class="card-content">
+                <h3>Cheese Pizza</h3>
+                <p>Loaded with fresh cheese and vegetables.</p>
+                <div class="price">
+                    <span>$12</span>
+                    <button>Buy</button>
+                </div>
+              </div> 
+            </div>
+            <div class="card">
+              <img src="https://picsum.photos/400/300?burger">
+               <div class="card-content">
+                <h3>Chicken Burger</h3>
+                <p>Juicy burger with crispy fries.</p>
+                <div class="price">
+                    <span>$10</span>
+                    <button>Buy</button>
+                </div>
+               </div>
+            </div>
+            <div class="card">
+               <img src="https://picsum.photos/400/300?pasta"> 
+               <div class="card-content">
+                <h3>Italian Pasta</h3>
+                <p>Creamy pasta with herbs and cheese.</p>
+                <div class="price">
+                    <span>$15</span>
+                    <button>Buy</button>
+                </div>
+               </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="about">
+           <img src="https://picsum.photos/600/500?restaurant">
+           <div class="about-text">
+            <h2>Why Choose Us?</h2>
+            <p>We prepare every meal using fresh ingredients and authentic recipes. Our chefs focus on quality, taste, and presentation to give every customer an unforgettble dining experience.</p>
+            <p>Whether you dine in or order online, our goal is to serve delicious food with excellent service every day.</p>
+           </div> 
+        </div>
+    </section>
+    <footer>
+        <h2>FoodZone Restaurant</h2>
+        <p>Open Daily: 10:00 AM - 11:00 PM</p>
+        <div class="social">
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-youtube"></i>
+            <i class="fab fa-twitter"></i>
+        </div>
+        <p style="margin-top: 20px;">
+            &copy; 2026 FoodZone. All Right Reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player UI</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<style>
+    *{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#111;
+color:white;
+overflow:hidden;
+}
+.container{
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    height: 100vh;
+}
+/* sidebar */
+.sidebar{
+    background: #000;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+}
+.logo{
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 35px;
+    color: #1DB954;
+}
+.menu a{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #b3b3b3;
+    text-decoration: none;
+    padding: 14px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    transition: 3s;
+}
+.menu a:hover{
+    background: #282828;
+    color: white;
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <!-- sidebar -->
+         <div class="sidebar">
+            <div class="logo">
+                <i class="fa-brands fa-spotify"></i> Music
+            </div>
+            <div class="menu">
+                <a href="#"><i class="fa-solid fa-magnifying-glass"></i><span>Home</span></a>
+                <a href="#"><i class="fa-solid fa-house"></i><span>Search</span></a>
+                <a href="#"><i class="fa-solid fa-book"></i><span>Your Library</span></a>
+            </div>
+            <div class="playlists">
+                <h4>PLAYLIST</h4>
+                <p><i class="fa-solid fa-heart"></i>Liked Songs</p>
+                <p><i class="fa-solid fa-headphones"></i>Chill Mix</p>
+                <p><i class="fa-solid fa-fire"></i>Top Hits</p>
+                <p><i class="fa-solid fa-moon"></i>Night Drive</p>
+                <p><i class="fa-solid fa-guitar"></i>Rock Classics</p>
+            </div>
+         </div>
+         <!-- main -->
+          <div class="main">
+            <div class="toper">
+                <div class="search">
+                    <i></i>
+                    <input type="text" placeholder="search music">
+                </div>
+                <ddiv class="profile">KP
+
+                </div>
+
+            </div>
+            <h2 class="section-title">Good Evening</h2>
+            <div class="cards">
+                <div class="card">
+                    <img src="profile.zip" alt="Search music">
+                </div>
+                <h3>Daily Mix 1</h3>
+                <p>Your favorite songs</p>
+            </div>
+            <div class="card">
+                <img src="profile.zip" alt="photo">
+            </div>
+          </div>
+    </div>
+</body>
+</html>

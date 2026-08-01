@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelX</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<style>
+    *{
+        margin: 0;
+        padding: o;
+        box-sizing: border-box;
+        font-family: sans-serif;
+    }
+    body{
+        background: #eef4ff;
+        overflow-x: hidden;
+    }
+    header{
+        width: 100%;
+        height: 90px;
+        background: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow:0 5px 20px rgba(0,0,0,.08);
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+    }
+    nav{
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .logo{
+        font-size: 34px;
+        font-weight: 800;
+        color: #2563ed;
+        letter-spacing: 2px;
+    }
+    .logo span{
+        color: #0f172a;
+    }
+    nav ul{
+        display: flex;
+        gap: 35px;
+        list-style: none;
+    }
+    nav ul li a{
+        text-decoration: none;
+        font-weight: 600;
+        color: #333;
+        transition: 3s;
+    }
+    nav ul li a:hover{
+        color: #2563ed;
+    }
+    .icons{
+        display: flex;
+        gap: 20px;
+        font-size: 20px;
+    }
+    .icons i{
+        cursor: pointer;
+        transition: 3s;
+    }
+    .icons i:hover{
+        color: #2563ed;
+        transform: scale(1.2);
+    }
+    .hero{
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        padding: 120px 8% 50px;
+    }
+    .left h4{
+        color: #2563ed;
+        letter-spacing: 3px;
+        margin-bottom: 20px;
+    }
+    .left h1{
+     font-size: 70px;
+     line-height: 1.1;
+     margin-bottom: 30px;
+     color: #0f172a;
+    }
+    .left p{
+        font-size: 18px;
+        line-height: 1.8;
+        color: #666;
+        margin-bottom: 40px;
+    }
+    .buttons{
+        display: flex;
+        gap: 20px;
+    }
+    .btn1{
+        padding: 15px 35px;
+        border: none;
+        background: #2563ed;
+        color: white;
+        border-radius: 10px;
+        font-size: 16ppx;
+        cursor: pointer;
+        transition: 3s;
+    }
+    .btn1:hover{
+        transform: translateY(-5px);
+    }
+    .btn2{
+        padding: 15px 35px;
+        background: white;
+        border: 2px solid #2563ed;
+        color: #2563ed;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 3s;
+    }
+    .btn2:hover{
+        background: #2563ed;
+        color: white;
+    }
+    .stats{
+        display: flex;
+        gap: 60px;
+        margin-top: 70px;
+    }
+    .stat h2{
+        font-size: 40px;
+        color: #2563ed;
+    }
+    .stat p{
+        margin-top: 10px;
+        font-size: 15px;
+        color: #555;
+    }
+    .right{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+    .main-image{
+     width: 470px;
+     border-radius: 30px;
+     box-shadow:0 20px 40px rgba(0,0,0,.2);
+    }
+    .glass{
+        position: absolute;
+        bottom: 40px;
+        left: 20px;
+        width: 260px;
+        padding: 20px;
+        background:rgba(255,255,255,.25);
+        backdrop-filter: blur(15px);
+        border-radius: 20px;
+        border:1px solid rgba(255,255,255,.3);
+        box-shadow:0 10px 30px rgba(0,0,0,.15);
+    }
+    .glass h3{
+        margin-bottom: 10px;
+    }
+    .glass p{
+        color: #4444;
+        margin-bottom: 15px;
+    }
+    .glass button{
+        padding: 10px 20px;
+        border: none;
+        background: #2563ed;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    .cricle{
+        position: absolute;
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        background: #60a5fa;
+        top: 40px;
+        right: 20px;
+        z-index: 1;
+        opacity: .4;
+    }
+    .square{
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background: #93c5fd;
+        bottom: 20px;
+        right: 60px;
+        transform: rotate(25deg);
+        z-index: 1;
+        opacity: .5;
+
+
+    }
+</style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                Travel <span>X</span>
+            </div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Tours</a></li>
+                <li><a href="#">Destinations</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="icons">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <i class="fa-regular fa-user"></i>
+            </div>
+        </nav>
+    </header>
+    <section class="hero">
+        <div class="left">
+         <h4>EXPLORE THE WORLD</h4>
+         <h1>Adventure Begins With Every Journey</h1>
+         <p>Traval across breathtaking mountains, tropical islands, beautiful beaches, and bibrant cities, Discover unforgetable experience with our premimum travel package designed for explorers.</p>
+         <div class="button">
+            <button class="btn1">Book Now</button>
+            <button class="btn2">Explore More</button>
+         </div>
+         <div class="stats">
+            <div class="stat">
+                <h2>150+</h2>
+                <p>Destinations</p>
+            </div>
+            <div class="stat">
+                <h2>25K</h2>
+                <p>Happy travelers</p>
+            </div>
+            <div class="stat">
+                <h2>12</h2>
+                <p>Years Experience</p>
+            </div>
+            </div>
+         </div>
+         <div class="right">
+            <div class="circle"></div>
+            <div class="square"></div>
+            <img class="main-image"src="https://picsum.photos/600/700?travel"alt="Travel">
+            <div class="glass">
+                <h3>Summer Offer</h3>
+                <p>Save up to 40% on international trips this season.</p>
+                <button>View Deals</button>
+            </div>
+         </div>
+        
+    </section>
+</body>
+</html>

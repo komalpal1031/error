@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Clone</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        body{
+            background: #0d1117;
+            color: white;
+        }
+        header{
+            position: sticky;
+            top: 0;
+            background: #161b22;
+            border-radius: 1px soild #30363d;
+            z-index: 1000;
+        }
+        nav{
+            max-width: 1350px;
+            margin: auto;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .left{
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+        .logo{
+            font-size: 34px;
+        }
+        .menu{
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        .menu a{
+            text-decoration: none;
+            color: #c9d1d9;
+            transition: .3s;
+        }
+        .menu a:hover{
+            color: white;
+        }
+        .right{
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+         .search{
+            background: #21262d;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 10px 15px;
+            color: white;
+            outline: none;
+            width: 240px;
+        }
+       
+        .signin{
+            color:white;
+            text-decoration: none;
+            padding: 10px 18px;
+            background: #238636;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: .3s;
+            
+
+        }
+        .signup{
+            padding: 10px 18px;
+            border: 1px solid #58a6ff;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            transition: .3s;
+        }
+        .signup:hover{
+            background: #238636;
+            border-color: #238636;
+        }
+        .hero{
+            max-width: 1300px;
+            margin: auto;
+            padding: 80px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .hero h1{
+            font-size: 64px;
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+        .hero p{
+            color: #8b949e;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 35px;
+        }
+        .buttons{
+            display: flex;
+            gap: 20px;
+        }
+        .btn1{
+            padding: 16px 35px;
+            background: #238636;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: .3s;
+        }
+        .btn1:hover{
+            background: #2ea043;
+        }
+        .btn2{
+            padding: 16px 35px;
+            background: transparent;
+            border: 1px solid #58a6ff;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            transition: .3s;
+        }
+        .btn2:hover{
+            background: #1f6feb;
+        }
+        .window{
+            background: #161b22;
+            border: 1px solid #30363d;
+            overflow: hidden;
+            box-shadow:0 20px 40px rgba(0,0,0,.4);
+        }
+        .topbar{
+            background: #21262d;
+            padding: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        .dot{
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+        }
+        .red{
+            background: #ff5f56;
+        }
+        .yellow{
+            background: #ffbd2e;
+        }
+        .green{
+            background: #27c93f;
+        }
+        .code{
+            padding: 30px;
+            font-family: monospace;
+            line-height: 2;
+            color: #58a6ff;
+        }
+        .code span{
+            color: #7ee787;
+        }
+        .stats{
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+        }
+        .box{
+            text-align: center;
+        }
+        .box h2{
+            font-size: 42px;
+            color: #58a6ff;
+        }
+        .box p{
+            margin-top: 10px;
+            color: #8b949e;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="left">
+                <div class="logo">
+                 <i class="fa-brands fa-github"></i>
+   
+                </div>
+                <ul class="menu">
+                    <li><a href="#">Product</a></li>
+                    <li><a href="#">Solutions</a></li>
+                    <li><a href="#">Open Source</a></li>
+                    <li><a href="#">Enterprise</a></li>
+                    <li><a href="#">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="right">
+                <input type="search" class="search" placeholder="Search Github">
+                <a href="#" class="signin">Sign In</a>
+                <a href="#" class="signup">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+    <section class="hero">
+<div>
+    <h1>Build software together.</h1>
+    <p>join millions of developers who use Github to build, collaborate, review code,and ship software faster than ever before.</p>
+    <div class="buttons">
+        <button class="btn1">Start Free Trial</button>
+        <button class="btn2">Explore GitHub</button>
+    </div>
+    <div class="stats">
+        <div class="box">
+            <h2>100M+</h2>
+            <p>Developers</p>
+        </div>
+         <div class="box">
+            <h2>420+</h2>
+            <p>Repositories</p>
+        </div>
+         <div class="box">
+            <h2>90%</h2>
+            <p>Fortune 100</p>
+        </div>
+
+    </div>
+</div>
+<div class="window">
+    <div class="topbar">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+    </div>
+    <div class="code">
+        &lt;html&gt;<br>
+        &nbsp;  &nbsp;&lt;body&gt;<br>
+          &nbsp;  &nbsp;  &nbsp;  &nbsp;&lt;h1&gt;
+          <span>Hello GitHub</span>
+          &lt;/h1&gt;<br>
+            &nbsp;  &nbsp;  &nbsp;  &nbsp;&lt;p&gt;
+            Build amazing project.
+            &lt;/p&gt;<br>
+              &nbsp;  &nbsp;&lt;/body&gt;<br>
+              &lt;/html&gt;
+    </div>
+</div>
+    </section>
+</body>
+</html>

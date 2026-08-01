@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameZone</title>
+    <style>
+        :root{
+            --primary:#8b5cf6;
+            --secondary:#06b6d4;
+            --dark:#0f172a;
+            --light:#ffffff;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'poppins',sans-serif;
+        }
+        body{
+            background: #020617;
+            color: white;
+        }
+        header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: #111827;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo{
+            font-size: 30px;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+        nav a{
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            transition: 3s;
+        }
+        nav a:hover{
+            color: var(--secondary);
+        }
+        .hero{
+            height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background:linear-gradient(rgba(0,0,0,.5),
+            rgba(0,0,0,.5)),
+            url("https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1600");
+            background-size: cover;
+            background-position: center;
+        }
+        .hero h1{
+            font-size: 65px;
+            margin-bottom: 20px;
+        }
+        .hero p{
+            font-size: 20px;
+            margin-bottom: 35px;
+        }
+        .hero button{
+            padding: 15px 35px;
+            border: none;
+            cursor: pointer;
+            border-radius: 50px;
+            margin: 10px;
+            font-size: 17px;
+            transition: 3s;
+        }
+        .play{
+            background: var(--secondary);
+            color: white;
+        }
+        .more{
+            background: transparent;
+            border: 2px solid white;
+            color: white ;
+        }
+        .hero button:hover{
+            transform: translateY(-5px);
+        }
+        .title{
+            text-align: center;
+            margin: 70px 0 40px;
+            font-size: 42px;
+        }
+        .games{
+            width: 90%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 25px;
+        }
+        .game{
+            background: #111827;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 3s;
+        }
+        .game img{
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+        }
+        .content{
+            padding: 20px;
+        }
+        .content button{
+            width: 100%;
+            padding: 12px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        .tournament{
+            width: 90%;
+            margin: 80px auto;
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 20px;
+        }
+        .box{
+            background: #111827;
+            padding: 35px;
+            text-align: center;
+            border-radius: 15px;
+        }
+        .box i{
+            font-size: 45px;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        .team{
+            width: 90%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 25px;
+        }
+        .player{
+            background: #111827;
+            text-align: center;
+            padding: 25px;
+            border-radius: 15px;
+            
+        }
+        .player img{
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        footer{
+            margin-top: 80px;
+            background: #111827;
+            padding: 40px;
+            text-align: center;
+        }
+        .social i{
+            font-size: 24px;
+            margin: 15px;
+            cursor: pointer;
+            transition: 3s;
+        }
+        .social i:hover{
+            color: var(--secondary);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-gamepad"></i>
+            GameZone
+        </div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Games</a>
+            <a href="#">Tournament</a>
+            <a href="#">Players</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+    <section class="hero">
+        <div>
+            <h1>PLAY THE <span>FUTURE</span>
+            OF GAMING</h1>
+            <p>Join millions of players around the world.</p>
+            <button class="play">Play Now</button>
+            <button class="more">Explore Games</button>
+        </div>
+    </section>
+    <h2 class="title">Featured Games</h2>
+    <section class="games">
+        <div class="game">
+            <img src="imagejpg.jpg">
+            <div class="content">
+                <h3>Cyber Battle</h3>
+                <p>Action Adventure</p>
+                <button>Download</button>
+            </div>
+        </div>
+        <div class="game">
+            <img src="imagejpg.jpg">
+            <div class="content">
+                <h3>Speed Racer</h3>
+                <p>Racing </p>
+                <button>Download</button>
+            </div>
+        </div>
+        <div class="game">
+            <img src="imagejpg.jpg">
+            <div class="content">
+                <h3>Space War</h3>
+                <p>Sci-Fi Shooter</p>
+                <button>Download</button>
+            </div>
+        </div>
+        <div class="game">
+            <img src="imagejpg.jpg">
+            <div class="content">
+                <h3>Fantasy Land</h3>
+                <p>Open World RPG</p>
+                <button>Download</button>
+            </div>
+        </div>
+    </section>
+    <h2 class="title">Tournamnet</h2>
+    <section class="tournament">
+     <div class="box">
+        <i class="fa-solid fa-trophy"></i>
+        <h2>$500,000</h2>
+        <p>Prize Pool</p>
+     </div>
+     <div class="box">
+        <i class="fa-solid fa-user"></i>
+        <h2>128</h2>
+        <p>Teams</p>
+     </div>
+     <div class="box">
+        <i class="fa-solid fa-user-plus"></i>
+        <h2>Register</h2>
+        <p>Open </p>
+     </div>
+    </section>
+    <footer>
+        <h2>GameZone</h2>
+        <p>Play Compete Win</p>
+        <div class="social">
+           <i class="fab fa-facebook"></i>
+           <i class="fab fa-instagram"></i>
+           <i class="fab fa-discord"></i>
+           <i class="fab fa-youtube"></i> 
+        </div>
+        <p>&copy; 2026 GameZone. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

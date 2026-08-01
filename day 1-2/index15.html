@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Festival Sale </title>
+    <style>
+        *{
+           margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .banner{
+            width: 90%;
+            margin: 70px auto;
+            background: linear-gradient(90deg,#ff9900, #ff5722);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .banner h2{
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        .banner button{
+            margin-top: 20px;
+            padding: 12px 30px;
+            border: none;
+            cursor: pointer;
+            background: white;
+            color: #ff5722;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        .products{
+            width: 90%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 25px;
+        }
+        .product{
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow:0 8px 18px rgba(0,0,0,.15);
+            transition: 3s;
+        }
+        .product:hover{
+            transform: translate(-8px);
+        }
+        .product img{
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        .product-info{
+            padding: 18px;
+        }
+        .price{
+            color: #e53935;
+            font-size: 22px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .old-price{
+            text-decoration: line-through;
+            color: gray;
+            margin-left: 10px;
+            font-size: 16px;
+        }
+        .product button{
+            width: 100%;
+            padding: 12px;
+            background: #131921;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .product button:hover{
+            background: #ff9900;
+        }
+        .reviews{
+           width: 90%;
+           margin: 80px auto;
+           display: flex;
+           gap: 25px;
+        }
+        .review{
+            flex: 1;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow:0 8px 18px rgba(0,0,0,.12);
+        }
+        .newsletter{
+            width: 90%;
+            margin: 80px auto;
+            background: #131921;
+            color: white;
+            padding: 50px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .newsletter input{
+            width: 60%;
+            padding: 14px;
+            margin-top: 22px;
+        }
+        .newsletter button{
+            padding: 14px 25px;
+            background: #ff9900;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <section class="banner">
+     <h2>Mega Festival Sale</h2>
+     <p>Save up to 70% on Electronics, Fashion, Furniture and more.</p>
+     <button>Shop Deals</button>
+    </section>
+    <h2 class="section-title">Featured Products</h2>
+    <section class="Products">
+        <div class="product">
+            <img src="images.jpeg">
+            <div class="product-info">
+                <h3>Gaming Laptop</h3>
+                <p class="price">$999
+                    <span  class="old-price">$1,299</span>
+                </p>
+                <p>&starf; &starf;&starf;&starf; &starf; (210 Reviews)</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="images.jpeg" alt="Phone">
+            <div class="product-info">
+                <h3>Smartphone</h3>
+                <p class="price">$699
+                    <span class="old-price">$799</span>
+                </p>
+                <p>&starf; &starf; &starf; &starf; &star; (155 Reviews)</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="images.jpeg" alt="Phone">
+            <div class="product-info">
+                <h3>Wireless Headphones</h3>
+                <p class="price">$699
+                    <span class="old-price">$149</span>
+                </p>
+                <p>&starf; &starf; &starf; &starf; &starf; (96 Reviews)</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="images.jpeg" alt="Phone">
+            <div class="product-info">
+                <h3>Smart Watch</h3>
+                <p class="price">$149
+                    <span class="old-price">$199</span>
+                </p>
+                <p>&starf; &starf; &starf; &starf; &star; (84 Reviews)</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="images.jpeg" alt="Phone">
+            <div class="product-info">
+                <h3>Sports Shoes</h3>
+                <p class="price">$79
+                    <span class="old-price">$99</span>
+                </p>
+                <p>&starf; &starf;&starf; &starf; &starf; (132 Reviews)</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="images.jpeg" alt="Phone">
+            <div class="product-info">
+                <h3>Digital Camera</h3>
+                <p class="price">$549
+                    <span class="old-price">$699</span>
+                </p>
+                <p>&starf; &starf; &starf; &starf; &star; (65 Reviews)</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="images.jpeg" alt="Phone">
+            <div class="product-info">
+                <h3>Bluetooth Speaker</h3>
+                <p class="price">$59
+                    <span class="old-price">$89</span>
+                </p>
+                <p>&starf; &starf; &starf; &starf; &starf; (201 Reviews)</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="images.jpeg" alt="Phone">
+            <div class="product-info">
+                <h3>Travel Backpack</h3>
+                <p class="price">$49
+                    <span class="old-price">$69</span>
+                </p>
+                <p>&starf; &starf; &starf; &starf; &star; (75 Reviews)</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+        </section>
+        <h2 class="section-title">Customer Reviews</h2>
+        <section class="reviews">
+        <div class="review">
+        <img src="images.jpeg" alt="Customer">
+        <h3>Sarah Johnson</h3>
+        <p>&starf; &starf; &starf; &starf; &starf;</p>
+        <p>Excellent quality product and super fast delivery.</p>
+        </div>
+        <div class="review">
+          <img src="images.jpeg" alt="Customer">
+          <h3>Michael Brown</h3>
+          <p>&starf; &starf; &starf; &starf; &star;</p>
+          <p>Amazing customer service and easy returns.</p>
+        </div>
+        <div class="review">
+          <img src="images.jpeg" alt="Customer">
+          <h3>Emily Davis</h3>
+          <p>&starf; &starf; &starf; &starf; &star;</p>
+          <p>Great shopping experience.Highly recommened.</p>
+        </div>
+        </section>
+        <section class="newsletter">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Get Updates about new arrivals and exclusive offers.</p>
+            <input type="email" placeholder="Enter your email">
+            <button>Subcricbe</button>
+        </section>
+</body>
+</html>

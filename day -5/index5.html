@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Premium Product Cards</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+     *{
+        margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+     }
+     body{
+
+background:#f5f7fb;
+padding:50px;
+
+}
+.title{
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 40px;
+    color: #222;
+}
+.products{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 30px;
+    max-width: 1300px;
+    margin: auto;
+}
+.card{
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
+    transition: .35s;
+    position: relative;
+}
+.card:hover{
+    transform: translateY(-12px);
+}
+.sale{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #ef4444;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+}
+.heart{
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    width: 42px;
+    height: 42px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+    transition: .3s;
+}
+.heart:hover{
+    background: #ef4444;
+    color: white;
+}
+.card img{
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+}
+.content{
+    padding: 25px;
+}
+.content h3{
+    margin-bottom: 10px;
+}
+.rating{
+    color: #f59e0b;
+    margin-bottom: 15px;
+}
+.description{
+    font-size: 14px;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+.price{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+.new{
+    font-size: 28px;
+    font-weight: 700;
+    color: #2563ed;
+}
+.old{
+    text-decoration: line-through;
+    color: #888;
+}
+button{
+    width: 100%;
+    padding: 14px;
+    border: none;
+    background: #2563ed;
+    color: white;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 3s;
+}
+button:hover{
+    background: #1d4ed8;
+}
+    </style>
+</head>
+<body>
+    <h1 class="tiile">Featured Products</h1>
+    <section class="products">
+        <div class="card">
+            <div class="sale">
+                30% OFF
+            </div>
+            <div class="heart">
+              <i class="fa-regular fa-heart"></i>
+  
+            </div>
+            <img src="https://picsum.photos/500/400?random=31" alt="Headphones">
+            <div class="content">
+                <p class="category">Electronics</p>
+                <h3>Wireless Headphones</h3>
+                <div class="rating">
+                    &starf; &starf;&starf;&starf; &starf;
+                </div>
+                <p class="description">Premium Wireless headphone with crystal-clear sound and long battery life.</p>
+                <div class="price">
+                    <span class="new">$149</span>
+                    <span class="old">$79</span>
+                </div>
+                <button><i class="fa-solid fa-cart-shopping"></i>Add to Cart</button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="sale">
+                NEW
+            </div>
+            <div class="heart">
+              <i class="fa-regular fa-heart"></i>  
+            </div>
+            <img src="https://picsum.photos/500/400?random=32" alt="Watch">
+            <div class="content">
+                <p class="category">Accessories</p>
+                <h3>Smart Watch</h3>
+                <div class="rating">
+                    &starf; &starf; &starf; &starf; &star;
+                </div>
+                <p class="description">track your fitness, receive notifications, any enjoy modern design.</p>
+                <div class="price">
+                    <span class="new">$149</span>
+                    <span class="old">$189</span>
+                </div>
+                <button><i class="fa-solid fa-cart-shopping"></i>Add to Carts
+            </button>
+            </div>
+        </div>
+         <div class="card">
+            <div class="sale">
+                HOT
+            </div>
+            <div class="heart">
+              <i class="fa-regular fa-heart"></i>  
+            </div>
+           <img src="https://picsum.photos/500/400?random=33" alt="Shoes">
+
+            <div class="content">
+                <p class="category">Fashion</p>
+                <h3>Running Shoes</h3>
+                <div class="rating">
+                    &starf; &starf; &starf; &starf; &star;
+                </div>
+                <p class="description">Lightweight sports shoes designed for comfort and high performance.</p>
+                <div class="price">
+                    <span class="new">$95</span>
+                    <span class="old">$130</span>
+                </div>
+                <button><i class="fa-solid fa-cart-shopping"></i>Add to Carts
+            </button>
+            </div>
+        </div>
+        
+         <div class="card">
+            <div class="sale">
+                15% OFF
+            </div>
+            <div class="heart">
+             <i class="fa-regular fa-heart"></i>
+            </div>
+           <img src="https://picsum.photos/500/400?random=34" alt="Laptop">
+
+            <div class="content">
+                <p class="category">Computers</p>
+                <h3>Gaming Laptop</h3>
+                <div class="rating">
+                    &starf; &starf; &starf; &starf; &star;
+                </div>
+                <p class="description">Powerful laptop with high-speed processor and dedicated graphics.</p>
+                <div class="price">
+                    <span class="new">$99</span>
+                    <span class="old">$1,199</span>
+                </div>
+                <button><i class="fa-solid fa-cart-shopping"></i>Add to Carts
+            </button>
+            </div>
+        </div>
+        
+
+    </section>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root{
+            --primary:#2563ed;
+            --secondary:#7c3aed;
+            --dark:#0f172a;
+            --light:#ffffff;
+            --gray:#f8fafc;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'poppins', sans-serif;
+        }
+        body{
+            background: var(--gray);
+        }
+        header{
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 70px;
+            background: white;
+            box-shadow: 0 5px 15px rgb(0, 0, 0,.08);
+            z-index: 100;
+        }
+        .logo{
+            font-size: 30px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        nav a{
+            margin-left: 25px;
+            text-decoration: none;
+            color: #333;
+            transition: 3s;
+
+        }
+        nav a:hover{
+            color: var(--primary);
+        }
+        .hero{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 90px 70px;
+            min-height: 90vh;
+        }
+       .left h1{
+        font-size: 65px;
+        margin-bottom: 20px;
+       }
+       .left span{
+        color: var(--primary);
+       }
+       .left p{
+        color: #555;
+        line-height: 1.8;
+        margin-bottom: 35px;
+       }
+       button{
+        padding: 15px 35px;
+        border: none;
+        cursor: pointer;
+        border-radius: 40px;
+        font-size: 16px;
+        margin-right: 15px;
+        transition: 3s;
+       }
+       .buy{
+        background: var(--primary);
+        color: white;
+       }
+       .demo{
+        background: var(--secondary);
+        color: white;
+       }
+       button:hover{
+        transform: translateY(-5px);
+       }
+       .right{
+        display: flex;
+        justify-content: center;
+       }
+       .right img{
+        width: 320px;
+        transition: 5s;
+       }
+       .right img:hover{
+        transform: rotate(-deg)
+        scale(1.08);
+       }
+       .title{
+        text-align: center;
+        font-size: 42px;
+        margin: 80px 0 40px;
+       }
+       .features{
+        width: 90%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        gap: 25px;
+       }
+       .feature{
+        background: white;
+        padding: 35px;
+        text-align: center;
+        border-radius: 20px;
+        box-shadow:0 8px 20px rgba(0,0,0,.08);
+        transition: 3s;
+       }
+       .feature:hover{
+        transform: translateY(-10px);
+       }
+       .feature i {
+        font-size: 45px;
+        color: var(--primary);
+        margin-bottom: 20px;
+       }
+       .specs{
+        width: 90%;
+        margin: 80px auto;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 25px;
+       }
+       .spec{
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+       }
+       footer{
+        background: var(--dark);
+        color: white;
+        padding: 40px;
+        text-align: center;
+        margin-top: 50px;
+       }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-mobile-screen"></i>NovaPhone
+        </div>
+        <nav>
+            <a href="#">Home</a>
+             <a href="#">Features</a>
+              <a href="#">Spece</a>
+               <a href="#">Reviews</a>
+                <a href="#">Buy</a>
+        </nav>
+    </header>
+    <section class="hero">
+       <div class="left">
+        <h1>Meet the <span>NovaPhone</span></h1>
+        <p>Experience flagship performance, AI photography, ultra-fast charging, and an immersive display in one premium smartphone</p>
+     
+       <button class="buy">Buy Now</button>
+       <button class="demo">Watch Demo</button>
+         </div>
+         <div class="right">
+            <img src="imagejpg.jpg" alt="smartphone">
+         </div>
+    <h2 class="title">Amazing Feature</h2>
+    <section class="features">
+        <div class="feature">
+        <i class="fa-solid fa-camera"></i>
+           <h3>108MP Camera</h3>
+           <p>Capture stunnig photo day and night.</p>
+        </div>
+        <div class="feature">
+        <i class="fa-solid fa-camera"></i>
+           <h3>6000mAh Battery</h3>
+           <p>Capture stunnig photo day and night.</p>
+        </div>
+        <div class="feature">
+        <i class="fa-solid fa-camera"></i>
+           <h3>108MP Camera</h3>
+           <p>Capture stunnig photo day and night.</p>
+        </div>
+        <div class="feature">
+        <i class="fa-solid fa-camera"></i>
+           <h3>108MP Camera</h3>
+           <p>Capture stunnig photo day and night.</p>
+        </div>
+    </section>
+    <h2 class="title">Specifications</h2>
+    <section class="specs">
+        <div class="spec">
+            <h3>Processor</h3>
+        <p>Octa-Core 3.2 GHz</p>
+        </div>
+        <div class="spec">
+            <h3>Processor</h3>
+        <p>Octa-Core 3.2 GHz</p>
+        </div>
+        <div class="spec">
+            <h3>Processor</h3>
+        <p>Octa-Core 3.2 GHz</p>
+        </div>
+        <div class="spec">
+            <h3>Processor</h3>
+        <p>Octa-Core 3.2 GHz</p>
+        </div>
+        <div class="spec">
+            <h3>Processor</h3>
+        <p>Octa-Core 3.2 GHz</p>
+        </div>
+        <div class="spec">
+            <h3>Processor</h3>
+        <p>Octa-Core 3.2 GHz</p>
+        </div>
+    </section>
+    <footer>
+        <h2>NovaPhone</h2>
+        <p>Designed for speed Built for the Future</p>
+        <p>&copy; 2026 NovaPhone. All Rights Reserved</p>
+    </footer>
+</body>
+</html>

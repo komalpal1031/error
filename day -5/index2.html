@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background:linear-gradient(135deg,#4f46e5,#06b6d4);
+    }
+    .container{
+        width: 400px;
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow:0 15px 40px rgba(0,0,0,.2);
+    }
+    .container h1{
+        text-align: center;
+        margin-bottom: 30px;
+        color: #4f46e5;
+    }
+    .input-box{
+        margin-bottom: 20px;
+        position: relative;
+    }
+    .input-box i{
+        position: absolute;
+        left: 15px;
+        top: 15px;
+        color: #777;
+    }
+    .input-box input{
+        width: 100%;
+        padding: 14px 14px 14xp 45px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        font-size: 15px;
+        outline: none;
+        transition: 3s;
+    }
+    .input-box input:focus{
+        border-color: #4f46e5;
+        box-shadow:0 0 8px rgba(79,70,229,.3);
+
+    }
+    .gender{
+        margin-bottom: 20px;
+    }
+    .gender label{
+        margin-right: 20px;
+    }
+    .checkbox{
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+    .checkbox input{
+        margin-right: 8px;
+    }
+    button{
+        width: 100%;
+        padding: 15px;
+        background: #4f46e5;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 3s;
+    }
+    button:hover{
+        background: #3730a3;
+        transform: translateY(-3px);
+    }
+    .login{
+        text-align: center;
+        margin-top: 20px;
+    }
+    .login a{
+        text-decoration: none;
+        color: #4f46e5;
+        font-weight: bold;
+    }
+    .social{
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 25px;
+    }
+    .social i:hover{
+        color: #4f46e5;
+        transform: scale(1.2);
+    }
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Create Account</h1>
+        <form>
+            <div class="input-box">
+              <i class="fa-solid fa-user"></i>
+                <input type="text" placeholder="Full Name" required>
+            </div>
+            <div class="input-box">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="email" placeholder="Email Address" required>
+            </div>
+            <div class="input-box">
+            <i class="fa-solid fa-phone"></i>
+            <input type="tel" placeholder="Mobiles Number" required>
+            </div>
+            <div class="input-box">
+           <i class="fa-solid fa-lock"></i>
+            <input type="password" placeholder="Password " required>
+            </div>
+           
+           <i class="fa-solid fa-lock"></i>
+            <input type="password" placeholder=" Confirm Password " required>
+            </div>
+            <div class="gender">
+                <strong>Gender</strong>
+                <br><br>
+                <label>
+                    <input type="radio" name="gender">Male
+                </label>
+                <label>
+                    <input type="radio" name="gender">Female
+                </label>
+                <label>
+                    <input type="radio" name="gender">Other
+                </label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" required>I agree to the terms and Conditions</label>
+            </div>
+            <button>Create Account</button>
+        </form>
+        <div class="login">
+            Already have an account? <a href="#">Login</a>
+        </div>
+        <div class="social">
+           <i class="fab fa-google"></i>
+           <i class="fab fa-facebook"></i> 
+           <i class="fab fa-github"></i>
+        </div>
+    </div>
+</body>
+</html>

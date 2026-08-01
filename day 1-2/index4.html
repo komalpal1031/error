@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML pracitce page 4</title>
+</head>
+<body>
+    <header>
+        <h1>Student Registration Form</h1>
+        <hr>
+    </header>
+    <form action="">
+        <fieldset>
+            <legend>Personal Information</legend>
+            <label for="fname">First Name:</label><br>
+            <input type="text" id="fname" name="fname" placeholder="Enter your first name">
+            <br><br>
+            <label for="lname">Last Name:</label><br>
+            <input type="text" id="lname" name="lname" placeholder="Enter your last name">
+            <br><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" placeholder="Enter your email">
+            <br><br>
+            <label for="pasword">Password:</label><br>
+            <input type="password" id="password" name="password">
+            <br><br>
+            <label for="phone ">Phone Number:</label><br>
+            <input type="tel" id="phone" name="phone">
+            <br><br>
+            <label for="dob">Date of Birth</label><br>
+            <input type="date" id="dob" name="dob">
+            <br><br>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>Other Details</legend>
+            <p><strong>Gender:</strong></p>
+            <input type="radio" id="male" name="gender">
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender">
+            <label for="female">Female</label>
+            <input type="radio" id="other" name="gender">
+            <label for="other">Other</label>
+
+            <br><br>
+          <label for="course">Select Course:</label><br>
+          <select name="course" id="course">
+            <option value="#">HTMl</option>
+            <option value="#">CSS</option>
+            <option value="#">javaScript</option>
+            <option value="#">React</option>
+          </select>
+          <br><br>
+          <p><strong>Skills</strong></p>
+          <input type="checkbook" name="" id="HTMl">
+          <label for="html">HTMl</label>
+
+          <input type="checkbox" name="" id="css">
+          <label for="css">CSS</label>
+          <input type="checkbox" name="" id="javaScript">
+          <label for="javaScript">javaScript</label>
+          <input type="checkbox" id="react">
+          <label for="react">React</label>
+          <br><br>
+          <label for="address">Address:</label><br>
+          <textarea name="address" id="" rows="3" cols="40" placeholder="Enter your address"></textarea>
+        </fieldset>
+        <br>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+    <hr>
+    <footer>
+        <p>&copy; 2026 Student Registration Form</p>
+    </footer>
+</body>
+</html>

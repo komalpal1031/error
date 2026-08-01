@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            ShopZone
+        </div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search products....">
+        </div>
+    </header>
+    <section class="hero">
+        <h1>Find Your Favorite Product</h1>
+        <p>Search and filter products using JavaScript.</p>
+    </section>
+    <main class="container">
+        <div class="filters">
+            <button class="filter-btn active" data-category="all">All</button>
+            <button class="filter-btn" data-category="fashion">
+                Fashion
+            </button>
+            <button class="filter-btn" data-category="electornic">
+                Electornic
+            </button>
+            <button class="filter-btn" data-category="shoes">
+                Shoes
+            </button>
+            <button class="filter-btn" data-category="accessories">
+                Accessories
+            </button>
+
+        </div>
+        <div class="products">
+            <div class="product" data-category="fashion">
+                <img src="https://picsum.photos/500/400?random=101" alt="T Shirt">
+                <div class="product-info">
+                    <p class="category">Fashion</p>
+                    <h3>classic T-Shirt</h3>
+                    <p class="price">799/-</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+            <div class="product" data-category="electronics">
+                <img src="https://picsum.photos/500/400?random=102" alt=" Headphones">
+                <div class="product-info">
+                    <p class="category">Electronics</p>
+                    <h3>Wireless Headphones</h3>
+                    <p class="price">2,499/-</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+            <div class="product" data-category="shoes">
+                <img src="https://picsum.photos/500/400?random=103" alt="Shoes">
+                <div class="product-info">
+                    <p class="category">Shoes</p>
+                    <h3>Running Shoes</h3>
+                    <p class="price">1,999/-</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+            <div class="product" data-category="accessories">
+                <img src="https://picsum.photos/500/400?random=104" alt="Watch">
+                <div class="product-info">
+                    <p class="category">Accessories</p>
+                    <h3>Smart Watch</h3>
+                    <p class="price">3,499/-</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+            <div class="product" data-category="fashion">
+                <img src="https://picsum.photos/500/400?random=105" alt="Jacket">
+                <div class="product-info">
+                    <p class="category">Fashion</p>
+                    <h3>Winter Jacket</h3>
+                    <p class="price">2,299/-</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+             <div class="product" data-category="electronics">
+                <img src="https://picsum.photos/500/400?random=106" alt="Speaker">
+                <div class="product-info">
+                    <p class="category">Electronics</p>
+                    <h3>Bluetooth Speaker</h3>
+                    <p class="price">1,599/-</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+            <div class="product" data-category="shoes">
+                <img src="https://picsum.photos/500/400?random=107" alt="Sneakers">
+                <div class="product-info">
+                    <p class="category">Shoes</p>
+                    <h3>Casual Sneakers</h3>
+                    <p class="price">1,499/-</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+            <div class="product" data-category="accessories">
+                <img src="https://picsum.photos/500/400?random=108" alt="Bag">
+                <div class="product-info">
+                    <p class="category">Accessories</p>
+                    <h3>Travel Backpack</h3>
+                    <p class="price">1,299/-</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+
+
+        </div>
+        <p id="noResult">No priducts found</p>
+    </main>
+
+    <script>
+        let searchInput =
+            document.getElementById("searchInput");
+        let products =
+            document.querySelectorAll(".product");
+        let filterButtons =
+            document.querySelectorAll(".filter-btn");
+        let noResult =
+            document.getElementById("noResult");
+
+        let currentCategory = "all";
+
+        function filterProducts() {
+            let searchText =
+                searchInput.value.teLowerCase();
+            let visibleProducts = 0;
+            products.forEach(function (product) {
+                let productName =
+                    product
+                        .querySelector("h3")
+                        .innerText
+                        .toLowerCase();
+
+                let productCategory =
+                    product.dataset.category;
+
+                let matchesSearch =
+                    productName.includes(searchText);
+
+                let matchesCategory =
+                    currentCategory === "all" ||
+                    productCategory === currentCategory;
+
+                if (
+                    matchesSearch &&
+                    matchesCategory
+                ) {
+                    product.style.display = "block";
+                    visibleProducts++;
+                }
+                else {
+                    product.style.display = "none";
+                }
+            });
+            if (visibleProducts === 0) {
+                noResult.style.display = "block";
+            }
+            else {
+                noResult.style.display = "none"
+            }
+        }
+        searchInput.addEventListener(
+            "input",
+            function () {
+                filterProducts();
+            }
+        );
+        filterButtons.forEach(
+            function (button) {
+                button.addEventListener(
+                    "click",
+                    function () {
+                        currentCategory =
+                            button.dataset.category;
+                        filterButtons.forEach(
+                            function (btn) {
+                                btn.classList.remove("active");
+                            }
+                        );
+                        button.classList.add("active");
+                        filterProducts();
+                    }
+                );
+            }
+        );
+    </script>
+</body>
+
+</html>

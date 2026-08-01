@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirNova Pro</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+    html{
+        scroll-behavior: smooth;
+    }
+    body{
+        background: #f8f9fb;
+        color: #222;
+    }
+    header{
+        position: sticky;
+        top: 0;
+        background: #fff;
+        box-shadow:0 3px 12px rgba(0,0,0,.08);
+        z-index: 1000;
+    }
+    nav{
+        max-width: 1200px;
+        margin: auto;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .logo{
+        font-size: 28px;
+        font-weight: 700;
+    }
+    .logo span{
+        color: #2563ed;
+    }
+    nav ul{
+        display: flex;
+        gap: 30px;
+        list-style: none;
+    }
+    nav a{
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        transition: 3s;
+    }
+    nav a:hover{
+        color: #2563ed;
+    }
+    .hero{
+        max-width: 1200px;
+        margin: auto;
+        padding: 70px 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 50px;
+    }
+    .hero h1{
+        font-size: 58px;
+        line-height: 1.1;
+        margin-bottom: 20px;
+    }
+    .hero p{
+        color: #666;
+        line-height: 1.8;
+        margin-bottom: 30px;
+    }
+    .buttons{
+        display: flex;
+        gap: 20px;
+    }
+    .buttons{
+        display: flex;
+        gap: 20px;
+    }
+    .btn-primary{
+        padding: 15px 30px;
+        background: #2563ed;
+       color: white;
+       border: none;
+       border-radius: 10px;
+       cursor: pointer;
+       transition: 3s;
+    }
+    .btn-primary:hover{
+        background: #1d4ed8;
+    }
+    .btn-secondary{
+        padding: 15px 30px;
+        background: #fff;
+        color: #2563ed;
+        border: 2px solid #2563ed;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 3s;
+    }
+    .btn-secondary:hover{
+        background: #2563ed;
+        color: #fff;
+    }
+    .hero img{
+        width: 100%;
+        border-radius: 20px;
+        box-shadow:0 20px 40px rgba(0,0,0,.15);
+    }
+    .features{
+        max-width: 1200px;
+        margin: 60px auto;
+        padding: 20px;
+
+    }
+    .title{
+        text-align: center;
+        font-size: 40px;
+        margin-bottom: 40px;
+    }
+    .grid{
+        display: grid;
+        grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+        gap: 25px;
+    }
+    .card{
+        background: #fff;
+        padding: 30px;
+        border-radius: 18px;
+        box-shadow:0 10px 25px rgba(0,0,0,.08);
+        transition: 3s;
+    }
+    .card:hover{
+        transform: translateY(-8px);
+    }
+    .card i{
+        font-size: 38px;
+        color: #2563ed;
+        margin-bottom: 20px;
+    }
+    .card h3{
+        margin-bottom: 15px;
+    }
+    .specs{
+        max-width: 1200px;
+        margin: 80px auto;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        gap: 30px;
+    }
+    .spec h3{
+        margin-bottom: 15px;
+        color: #2563ed;
+    }
+    .reviews{
+        max-width: 1200px;
+        margin: 80px auto;
+        padding: 20px;
+    }
+    .review-grid{
+        display: grid;
+        grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+        gap: 25px;
+    }
+    .review{
+        background: #fff;
+        padding: 25px;
+        border-radius: 18px;
+        box-shadow:0 10px 25px rgba(0,0,0,.08);
+    }
+    .review img{
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+    }
+    .review h4{
+        margin-bottom: 10px;
+    }
+    .review p{
+        color: #666;
+        line-height: 1.7;
+    }
+    footer{
+        margin-top: 80px;
+        background: #111827;
+        color: #fff;
+        text-align: center;
+        padding: 35px;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                Air <span>Nova</span>
+            </div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Specs</a></li>
+                <li><a href="#">Reviews</a></li>
+                <li><a href="#">Buy</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="hero">
+        <div>
+            <h1>Experience Premium Sound Like Never Before</h1>
+            <p>Meet the new AirNova Pro wireless headphone with immersive audio, active noise cancellation, and up to 40 hours of battery life.</p>
+            <div class="buttons">
+                <button class="btn-primary">Buy Now</button>
+                <button class="btn-secondary">Learn More</button>
+            </div>
+        </div>
+        <div>
+            <img src="https://picsum.photos/700/500?c" alt="Product">
+
+        </div>
+    </section>
+    <section class="features">
+        <h2 class="title">Why Choose AirNova</h2>
+        <div class="grid">
+            <div class="card">
+              <i class="fa-solid fa-volume-high"></i>
+              <h3>High Quality Audio</h3>  
+              <p>Powerful surround sound with deep bass and crystal-clear vocals.</p>
+            </div>
+            <div class="card">
+               <i class="fa-solid fa-battery-full"></i>
+               <h3>40 Hour Battery</h3> 
+               <p>Enjoy uninterrupted listening all day with fast charging support</p>
+            </div>
+            <div class="card">
+               <i class="fa-brands fa-bluetooth"></i> 
+               <h3>Bluetooth 5.3</h3>
+               <p>Fast pairing and stable wireless connection across all devices.</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-shield-heart"></i>
+                <h3>Premium Build</h3>
+                <p>Designed using lightweight materials for all-day comfort.</p>
+            </div>
+            
+        </div>
+    </section>
+    <section class="specs">
+      <div class="spec">
+        <h3>Technical Specification</h3>
+        <p>Driver Size: 45mm</p>
+        <p>Battery Life: 40 Hours</p>
+        <p>Charging: USB-C Fast charging</p>
+        <p>Connectivity: Bluetooth 5.3</p>
+      </div>
+      <div class="spec">
+        <h3>Inside the Box</h3>
+        <p>&check; AirNova pro Headphone</p>
+        <p>&check; USB-C Charging cable</p>
+        <p>&check; Travel Carry Case</p>
+        <p>&check; User Manual</p>
+      </div>
+    </section>
+    <section class="reviews">
+     <h2 class="title">Customer Reviwes</h2>
+     <div class="review-grid">
+        <div class="review">
+           <img src="https://picsum.photos/100?random=11" alt="Customer"> 
+           <h4>Emily Johnson</h4>
+           <p>&starf; &starf; &starf; &starf; &starf; Excellent sound quality and very comfortable for long listening sessions.</p>
+        </div>
+        <div class="review">
+            <img src="https://picsum.photos/100?random=12" alt="Customer">
+            <h4>David Miller</h4>
+            <p>&starf; &starf; &starf; &starf; &starf; The battery life exceeded my expectations. Highly recommended. </p>
+        </div>
+        <div class="review">
+           <img src="https://picsum.photos/100?random=13" alt="Customer"> 
+           <h4>Sophia Brown</h4>
+           <p>&starf; &starf; &starf; &starf; &starf; premium design with amazing noise cancellation.</p>
+        </div>
+     </div>
+    </section>
+    <footer>
+        <h3>AirNova Pro</h3>
+        <p>&copy; 2026 AirNova. Crafted with HTML & CSS.</p>
+    </footer>
+</body>
+</html>

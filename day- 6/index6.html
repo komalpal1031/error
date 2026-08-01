@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Instagram Clone</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+body{background:#111;color:#fff}
+header{position:sticky;top:0;background:#181818;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #333}
+.logo{font-size:28px;font-weight:600}
+.search input{padding:10px 15px;border-radius:20px;border:none;width:280px;background:#2b2b2b;color:#fff}
+.icons i{margin-left:18px;font-size:20px}
+.container{display:grid;grid-template-columns:220px 1fr 320px;gap:24px;padding:20px}
+aside,.right{position:sticky;top:70px;height:fit-content}
+.menu div{padding:12px;border-radius:10px;margin-bottom:8px}
+.menu div:hover{background:#222}
+.stories{display:flex;overflow:auto;gap:16px;padding-bottom:20px}
+.story{text-align:center}
+.story img{width:70px;height:70px;border-radius:50%;border:3px solid #ff2d55}
+.post{background:#181818;border:1px solid #333;border-radius:14px;margin-bottom:25px;overflow:hidden}
+.posthead{display:flex;justify-content:space-between;padding:15px}
+.user{display:flex;gap:10px;align-items:center}
+.user img{width:40px;height:40px;border-radius:50%}
+.postimg img{width:100%;display:block}
+.actions{display:flex;justify-content:space-between;padding:14px;font-size:20px}
+.actions .left i{margin-right:16px}
+.caption,.likes,.comments{padding:0 14px 12px}
+.card{background:#181818;border:1px solid #333;border-radius:14px;padding:18px}
+.sug{display:flex;justify-content:space-between;margin:14px 0}
+button{background:#0095f6;color:#fff;border:none;padding:6px 12px;border-radius:8px}
+@media(max-width:1000px){.container{grid-template-columns:1fr}.right,aside{display:none}.search input{width:180px}}
+@media(max-width:600px){.search{display:none}.logo{font-size:22px}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">Instagram</div>
+<div class="search"><input placeholder="Search"></div>
+<div class="icons">
+<i class="fa-solid fa-house"></i>
+<i class="fa-regular fa-paper-plane"></i>
+<i class="fa-regular fa-heart"></i>
+<i class="fa-regular fa-circle-user"></i>
+</div>
+</header>
+
+<div class="container">
+<aside>
+<div class="menu">
+<div>🏠 Home</div><div>🔍 Search</div><div>🎬 Reels</div><div>💬 Messages</div>
+<div>❤️ Notifications</div><div>👤 Profile</div>
+</div>
+</aside>
+
+<main>
+<div class="stories">
+<div class="story"><img src="https://picsum.photos/80?random=1"><p>User1</p></div>
+<div class="story"><img src="https://picsum.photos/80?random=2"><p>User2</p></div>
+<div class="story"><img src="https://picsum.photos/80?random=3"><p>User3</p></div>
+<div class="story"><img src="https://picsum.photos/80?random=4"><p>User4</p></div>
+<div class="story"><img src="https://picsum.photos/80?random=5"><p>User5</p></div>
+<div class="story"><img src="https://picsum.photos/80?random=6"><p>User6</p></div>
+<div class="story"><img src="https://picsum.photos/80?random=7"><p>User7</p></div>
+<div class="story"><img src="https://picsum.photos/80?random=8"><p>User8</p></div>
+</div>
+<div class="post">
+<div class="posthead">
+<div class="user"><img src="https://picsum.photos/50?random=21"><span>user_1</span></div>
+<i class="fa-solid fa-ellipsis"></i>
+</div>
+<div class="postimg"><img src="https://picsum.photos/900/600?random=51"></div>
+<div class="actions">
+<div class="left"><i class="fa-regular fa-heart"></i><i class="fa-regular fa-comment"></i><i class="fa-regular fa-paper-plane"></i></div>
+<div><i class="fa-regular fa-bookmark"></i></div>
+</div>
+<div class="likes"><b>1237 likes</b></div>
+<div class="caption"><b>user_1</b> Beautiful HTML & CSS project 🚀</div>
+<div class="comments">View all comments...</div>
+</div>
+
+<div class="post">
+<div class="posthead">
+<div class="user"><img src="https://picsum.photos/50?random=22"><span>user_2</span></div>
+<i class="fa-solid fa-ellipsis"></i>
+</div>
+<div class="postimg"><img src="https://picsum.photos/900/600?random=52"></div>
+<div class="actions">
+<div class="left"><i class="fa-regular fa-heart"></i><i class="fa-regular fa-comment"></i><i class="fa-regular fa-paper-plane"></i></div>
+<div><i class="fa-regular fa-bookmark"></i></div>
+</div>
+<div class="likes"><b>1274 likes</b></div>
+<div class="caption"><b>user_2</b> Beautiful HTML & CSS project 🚀</div>
+<div class="comments">View all comments...</div>
+</div>
+
+<div class="post">
+<div class="posthead">
+<div class="user"><img src="https://picsum.photos/50?random=23"><span>user_3</span></div>
+<i class="fa-solid fa-ellipsis"></i>
+</div>
+<div class="postimg"><img src="https://picsum.photos/900/600?random=53"></div>
+<div class="actions">
+<div class="left"><i class="fa-regular fa-heart"></i><i class="fa-regular fa-comment"></i><i class="fa-regular fa-paper-plane"></i></div>
+<div><i class="fa-regular fa-bookmark"></i></div>
+</div>
+<div class="likes"><b>1311 likes</b></div>
+<div class="caption"><b>user_3</b> Beautiful HTML & CSS project 🚀</div>
+<div class="comments">View all comments...</div>
+</div>
+
+<div class="post">
+<div class="posthead">
+<div class="user"><img src="https://picsum.photos/50?random=24"><span>user_4</span></div>
+<i class="fa-solid fa-ellipsis"></i>
+</div>
+<div class="postimg"><img src="https://picsum.photos/900/600?random=54"></div>
+<div class="actions">
+<div class="left"><i class="fa-regular fa-heart"></i><i class="fa-regular fa-comment"></i><i class="fa-regular fa-paper-plane"></i></div>
+<div><i class="fa-regular fa-bookmark"></i></div>
+</div>
+<div class="likes"><b>1348 likes</b></div>
+<div class="caption"><b>user_4</b> Beautiful HTML & CSS project 🚀</div>
+<div class="comments">View all comments...</div>
+</div>
+
+</main>
+
+<div class="right">
+<div class="card">
+<h3>Suggestions For You</h3>
+<div class="sug"><span>coder_1</span><button>Follow</button></div><div class="sug"><span>coder_2</span><button>Follow</button></div><div class="sug"><span>coder_3</span><button>Follow</button></div><div class="sug"><span>coder_4</span><button>Follow</button></div><div class="sug"><span>coder_5</span><button>Follow</button></div>
+</div>
+</div>
+</div>
+</body>
+</html>

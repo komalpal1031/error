@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #111827;
+            padding: 3px;
+        }
+        .slider-container{
+            width: 850px;
+            max-width: 100%;
+        }
+        .title{
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        .slider img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .overlay{
+            position: relative;
+            bottom: o;
+            left: 0;
+            width: 100%;
+            padding: 60px 30px 30px;
+            background:linear-gradient(
+        transparent,
+        rgba(0,0,0,.9)
+    );
+           color: white;
+        }
+        .overlay h2{
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        .overlay p{
+            color: #ddd;
+        }
+        .arrow{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 55px;
+            height: 55px;
+            border: none;
+            border-radius: 50%;
+             background:rgba(0,0,0,.6);
+            color: white;
+            font-size: 25px;
+            cursor: pointer;
+            transition: .3s;
+        }
+        .arrow:hover{
+            background: white;
+            color: black;
+        }
+        .previous{
+            left: 20px;
+        }
+        .next{
+            right: 20px;
+        }
+        .dots{
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 25px;
+        }
+        .dot{
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: #6b7280;
+            cursor: pointer;
+            transition: .3s;
+        }
+        .dot.active{
+            width: 35px;
+            border-radius: 20px;
+            background: white;
+        }
+        .counter{
+            color: #ddd;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="slider-container">
+        <h1 class="title">travel Gallery</h1>
+        <div class="slider">
+            <img id="sliderImage"
+            src="https://picsum.photos/900/600?random=1"
+            alt="Slider Image">
+            <div class="overlay">
+                <h2 id="imageTitle">Beautiful Mountains</h2>
+                <p id="imageText">Explore amazing place around the world.</p>
+            </div>
+            <button class="arrow previous" onclick="priviousSlide()">&#10094;</button>
+            <button class="arrow next" onclick="nextSlide()">&#10095;</button>
+        </div>
+        <div class="dots">
+            <span class="dot active" onclick="goToSlide(0)">
+ </span>
+ <span class="dot" onclick="goToSlide(1)"></span>
+  <span class="dot" onclick="goToSlide(2)"></span>
+   <span class="dot" onclick="goToSlide(3)"></span>
+        </div>
+        <p class="counter" id="counter">1 / 4</p>
+    </div>
+    <script>
+        const slides =[
+            {
+             image:
+              "https://picsum.photos/900/600?random=1",
+              title:
+              "Beautiful Mountains",
+              text:
+              "Explore amazing mountains and peaceful landscapes."
+            },
+            {
+                image:
+                 "https://picsum.photos/900/600?random=1",
+                title:
+                "Ocean Adventure",
+                text:
+                "Discover beautiful beaches and clear blue water."
+            },
+            {
+                image:
+                 "https://picsum.photos/900/600?random=3",
+                 title:
+                 "Modern City",
+                 text:
+                 "Experience the energy of mordern city life."
+
+            },
+            {
+                image:
+                 "https://picsum.photos/900/600?random=4",
+                 title:
+                 "Nature Escape",
+                 text:
+                 "Relax and enjoy the beauty of nature."
+
+            },
+        ];
+        let currentSlide = 0;
+        const image =
+        document.getElementById("sliderImage");
+        const title =
+        document.getElementById("imageTitle");
+        const text = 
+        document.getElementById("imageText");
+        const counter =
+        document.getElementById("counter");
+        const dots =
+        document.querySelectorAll(".doct");
+
+        function showSlide(){
+            image.src =
+            slides[currentSlide].image;
+            title.innerHTML =
+            slides[currentSlide].title;
+            text.innerHTML =
+            slides[currentSlide].text;
+            counter.innerHTML =
+            (currentSlide + 1)
+            + " / "
+            + slides.length;
+            dots.forEach(function(dot){
+                dot.classList.remove("active");
+            });
+            dots[currentSlide].classList.add("active");
+        }
+        function nextSlide(){
+            currentSlide++;
+            if(currentSlide >= slides.length){
+                currentSlide = 0;
+            }
+            showSlide();
+        }
+        function priviousSlide(){
+            currentSlide--;
+            if(currentSlide < 0){
+                currentSlide =
+                slides.length - 1;
+            }
+            showSlide();
+        }
+        function goToSlide(index){
+            currentSlide = index;
+            showSlide();
+        }
+        setInterval(function(){
+            nextSlide();
+        }, 4000);
+        showSlide();
+    </script>
+</body>
+</html>
