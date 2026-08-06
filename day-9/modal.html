@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Agency</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css" integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        
+        }
+        body{
+            background: #f8fafc;
+            color: #1e293b;
+        }
+        nav{
+            height: 70px;
+            padding: 0 7%;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        }
+        .logo{
+            font-size: 25px;
+            font-weight: bold;
+            color: #7c3aed;
+        }
+        nav ul{
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        nav a{
+            color: #334155;
+            text-decoration: none;
+        }
+        .hero{
+            min-height: 550px;
+            padding: 60px 8%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 50px;
+        }
+        .hero h1{
+            font-size: 55px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        .hero h1 span{
+            color: #7c3aed;
+        }
+        .hero p{
+            max-width: 550px;
+            margin-bottom: 30px;
+            color: #64748b;
+            line-height: 1.7;
+        }
+        .main-btn{
+          padding: 14px 28px;
+          border: none;
+          border-radius: 8px;
+          background: #7c3aed;
+          color: white;
+          font-size: 16px;
+          cursor: pointer;  
+        }
+        .main-btn:hover{
+            background: #6d28d9;
+        }
+        .hero-image img{
+          width: 100%;
+          border-radius: 20px;
+        }
+        .services{
+            padding: 70px 8%;
+            background: white;
+        }
+        .section-title{
+            margin-bottom: 40px;
+            text-align: center;
+            font-size: 36px;
+
+        }
+        .cards{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+        .card{
+            padding: 30px;
+            background: #f8fafc;
+            border-radius: 14px;
+            transition: 0.3s;
+        }
+        .card:hover{
+           transform: translateY(-7px);
+           box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); 
+        }
+        .card .icon{
+            margin-bottom: 15px;
+            font-size: 35px;
+        }
+        .card h3{
+            margin-bottom: 12px;
+        }
+        .card p{
+            color: #64748b;
+            line-height: 1.6;
+        }
+        .modal{
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal.show{
+            display: flex;
+        }
+        .modal-box{
+            width: 420px;
+            max-width: 100%;
+            padding: 30px;
+            position: relative;
+            background: white;
+            border-radius: 18px;
+            animation: popup 0.3s ease;
+        }
+        @keyframes popup {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+      .close{
+        position: absolute;
+        top: 15px;
+        right: 18px;
+        border: none;
+        background: none;
+        font-size: 28px;
+        cursor: pointer;
+      }
+      .modal-box h2{
+        margin-bottom: 10px;
+      }
+      .modal-box p{
+        margin-bottom: 20px;
+        color: #64748b;
+      }
+      .modal-box input,
+        .modal-box textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            outline: none;
+        }
+        .modal-box textarea{
+            height: 100px;
+            resize: none;
+        }
+        .modal-box input:focus,
+        .modal-box textarea:focus {
+            border-color: #7c3aed;
+        }
+        .send-btn{
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 7px;
+            background: #7c3aed;
+            color: white;
+            cursor: pointer;
+        }
+        .send-btn:hover{
+            background: #6d28d9;
+        }
+
+    </style>
+</head>
+<body>
+   <nav>
+    <div class="logo">PixelCraft</div>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">About</a></li>
+    </ul>
+    <button class="main-btn" onclick="openModal()">Contact Us</button>
+   </nav> 
+
+   <section class="hero">
+    <div class="hero-content">
+        <h1>We Build <span>Digital Experiences.</span></h1>
+        <p>we create modern websites, applications and digital products for growing businesses.</p>
+        <button class="main-btn" onclick="openModal()">Start a Project</button>
+    </div>
+    <div class="hero-image">
+        <img src="https://picsum.photos/700/500?random=20" alt="Creative Agency"> 
+    </div>
+   </section>
+
+   <section class="services">
+    <h2 class="section-title">Our Services</h2>
+    <div class="cards">
+        <div class="card">
+            <div class="icon"><i class="fa-solid fa-desktop"></i></div>
+                <h3>Web Development</h3>
+                <p>Modern and responsive website built for desktop, tablet and mobile devices.</p>
+            </div>
+            <div class="card">
+            <div class="icon"><i class="fa-solid fa-palette"></i></div>
+                <h3>UI Design</h3>
+                <p>Clean and attractive interfaces disigned to provide a better user Experience.</p>
+            </div>
+            <div class="card">
+            <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
+                <h3>Digital Growth</h3>
+                <p>Digital solutions designed to help businesses reach more customers online.</p>
+            </div>
+    </div>
+    
+   </section>
+   <div class="modal" id="modal">
+    <div class="modal-box">
+        <button class="close" onclick="closeModal()">&times;</button>
+        <h2>Start Your Project</h2>
+        <p>Enter your details and send us a message</p>
+        <input type="text" id="name" placeholder="Your name">
+        <input type="email" id="email" placeholder="email address">
+        <textarea name="message" placeholder="Tell us about your project"></textarea>
+        <button class="send-btn" onclick="sendMessage()">Send Message</button>
+    </div>
+   </div>
+
+
+   <!-- script -->
+    <script>
+        let modal = document.getElementById("modal");
+        function openModal(){
+            modal.classList.add("show");
+        }
+        function closeModal(){
+            modal.classList.remove("show");
+        }
+        function sendMessage(){
+            let name = document.getElementById("name").value;
+
+            if (name === ""){
+                alert("please enter your name.");
+                return;
+            }
+            alert("Thank " + name + "! Your message was sent.");
+            closeModal();
+        }
+        modal.addEventListener("click", function(event){
+            if (event.target === modal){
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

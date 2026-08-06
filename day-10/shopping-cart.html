@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let products = [
+            {id: 1, name: "Headphones", price: 1999, icon: "🎧"},
+            {id: 2, name: "Smart Watch", price: 2999, icon: "⌚"},
+            {id: 3, name: "Backpack", price: 1499, icon: "🎒"},
+            {id: 4, name: "Camera", price: 4999, icon: "📷"}
+
+        ];
+        let cart = [];
+        function displayProducts(){
+            let container = document.getElementById("products");
+            container.innerHTML = "";
+
+            products.forEach(function(product){
+                let card = document.createElement("div");
+                card.className = "product";
+
+                 card.innerHTML = `
+                    <div class="product-icon">${product.icon}</div>
+                    <h3>${product.name}</h3>
+                    <p class="price">₹${product.price}</p>
+                    <button class="add-btn" onclick="addToCart(${product.id})">Add to Cart</button>
+                `;
+                container.appendChild(card);
+            });
+        }
+        function addToCart(id){
+            let item = cart.find(function(product){
+                return product.id === id;
+            });
+            if(item){
+                item.quantity++;
+            } else {
+                let product =  products.find(function(product){
+                    return product.id === id;
+                });
+                cart.push({
+                 id: product.id,
+                 name: product.name,
+                 price: product.price,
+                 quantity:1
+                });
+            }
+            displayCart();
+        }
+        function displayCart(){
+            let container = document.getElementById("cartItems");
+            container.innerHTML = "";
+
+            if (cart.length === 0){
+                container.innerHTML = `<p class="empty"> Your cart is empty.</p>`;
+            }
+            cart.forEach(function(item){
+                let cartItems = document.createElement("div");
+                cartItem.innerHTML =`
+                <div class="item-top">
+                    <div>
+                        <strong>${item.name}</strong>
+                        <p>&#8377;${item.price} each</p>
+                    </div>
+                    <button class="remove" onclick="removeItem(${item.id})">Remove</button>
+                    </div>
+                    
+                    <div class="item-bottom">
+                        <div cla
+            })
+        }
+    </script>
+</body>
+</html>

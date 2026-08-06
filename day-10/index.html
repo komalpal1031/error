@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css" integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            min-height: 100vh;
+            background: #09090b;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .stopwatch{
+            width: 500px;
+            max-height: 100%;
+            padding: 45px;
+            background: #18181b;
+            border: 1px solid #27272a;
+            border-radius: 20px;
+            text-align: center;
+             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+        .icon{
+            margin-bottom: 15px;
+            font-size: 45px;
+            color: rgb(15, 112, 240);
+        }
+        h1{
+            margin-bottom: 8px;
+            font-size: 32px;
+        }
+        .subtitle{
+            margin-bottom: 35px;
+            color: #a1a1aa;
+        }
+        .time{
+            margin-bottom: 35px;
+            font-size: 55px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+        .milliseconds{
+            color: #22c55e;
+        }
+        buttons{
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+        button{
+            padding: 12px 22px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .start{
+            background: #16a34a;
+        }
+        .pause{
+            background: #f59e0b;
+        }
+        .reset{
+           background: #dc2626;
+        }
+        button:hover{
+            opacity: 0.85;
+        }
+        .status{
+            margin-top: 25px;
+            color: #71717a;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <main class="stopwatch">
+        <div class="icon"><i class="fa-solid fa-clock"></i></div>
+        <h1>Stopwatch</h1>
+        <p class="subtitle">Track your coding practice time.</p>
+        <div class="time">
+            <span id="minutes">00</span>:<span id="seconds">00</span>:<span class="milliseconds" id="milliseconds">00</span>
+        </div>
+        <div class="buttons">
+            <button class="start" onclick="startTimer()">Start</button>
+            <button class="pause" onclick="pauseTimer()">Pause</button>
+            <button class="reset" onclick="resetTimer()">Reset</button>
+        </div>
+        <p class="status" id="status">Ready to Start</p>
+    </main>
+
+    <script>
+        let milliseconds = 0;
+        let seconds = 0;
+        let minutes = 0;
+        let timer = 0;
+        function startTimer(){
+            if (timer !== null) return;
+
+            document.getElementById("status").innerHTML = "Stopwatch running...."
+            timer = setInterval(function(){
+                milliseconds++;
+                if (milliseconds === 100) {
+                    milliseconds = 0;
+                    seconds++;
+                }
+                if (seconds === 60) {
+                    seconds = 0;
+                    minutes++;
+                }
+                displayTime();
+            }, 10);
+        }
+        function pauseTimer(){
+            clearInterval(timer);
+            timer = null;
+            document.getElementById("status").innerHTML = "Stopwatch paused";
+        }
+        function resetTimer(){
+            clearInterval(timer);
+            timer = null;
+            milliseconds = 0;
+            seconds = 0;
+            minutes = 0;
+
+            displayTime();
+            document.getElementById("status").innerHTML = "Ready to start"
+        }
+         function displayTime(){
+            let min = minutes < 10 ? "0" + minutes : minutes;
+            let sec = seconds < 10 ? "0" + seconds : seconds;
+            let ms = milliseconds < 10 ? "0" + milliseconds : milliseconds;
+
+            document.getElementById("minutes").innerHTML = min;
+            document.getElementById("seconds").innerHTML = sec;
+            document.getElementById("milliseconds").innerHTML = ms;
+         }
+    </script>
+</body>
+</html>

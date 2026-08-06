@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            min-height: 100vh;
+            padding: 20px;
+            background: #020617;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .clock-box{
+            width: 700px;
+            max-width: 100%;
+            padding: 50px;
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+        .greeting{
+            margin-bottom: 12px;
+            color: #38bdf8;
+            font-size: 20px;
+        }
+        h1{
+            margin-bottom: 30px;
+            font-size: 38px;
+        }
+        .clock{
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .time-box{
+            width: 120px;
+            padding: 22px 10px;
+            background: #1e293b;
+            border-radius: 12px;
+        }
+        .time-box span{
+            display: block;
+            color: #38bdf8;
+            font-size: 45px;
+            font-weight: bold;
+        }
+        .time-box p{
+            margin-top: 7px;
+            color: #94a3b8;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+        .colon{
+            color: #38bdf8;
+            font-size: 40px;
+            font-weight: bold;
+        }
+        .ampm{
+            padding: 10px 14px;
+            background: #38bdf8;
+            color: #0f172a;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .date{
+            margin-top: 30px;
+            color: #cbd5e1;
+            font-size: 18px;
+        }
+        .message{
+            margin-top: 12px;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+    <main class="clock-box">
+        <p class="greeting" id="greeting">Good Morning</p>
+        <h1>Digital Clock</h1>
+
+        <div class="clock">
+            <div class="time-box">
+                <span id="hours">00</span>
+                <p>Hours</p>
+            </div>
+            <div class="colon">:</div>
+            <div class="time-box">
+                <span id="minutes">00</span>
+                <p>Minutes</p>
+            </div>
+            <div class="colon">:</div>
+            <div class="time-box">
+                <span id="seconds">00</span>
+                <p>Seconds</p>
+            </div>
+
+            <div class="ampm" id="ampm">AM</div>
+        </div>
+        <p class="date" id="date"></p>
+        <p class="message" id="message"></p>
+    </main>
+    <script>
+        function updateClock(){
+            let now = new Date();
+
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+
+            let ampm = hours >= 12 ? "PM" : "AM";
+            let greeting = "";
+            let message = "";
+            if (hours < 12){
+                greeting = "Godd Morning ☀️"
+                message = "Strart your day with some coding practice.";
+            } else if (hours < 17) {
+                greeting = "Good Afternoon  🌤️";
+                message = "Keep building and improving your skills.";
+            } else {
+                greeting = "Good Evening  🌙";
+                message = "Finish your coding goals for today";
+            }
+            hours = hours % 12;
+            if(hours === 0) {
+                hours = 12;
+            }
+            hours = hours < 10 ? "0" + hours : hours;
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+            document.getElementById("ampm").innerHTML = ampm;
+            document.getElementById("greeting").innerHTML = greeting;
+            document.getElementById("message").innerHTML = message;
+
+            updateDate(now);
+        }
+        function updateDate(now){
+            let days = [
+                "Sunday",
+                "Monday",
+                "tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday"
+            ];
+            let months = [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "Auguest",
+                "September",
+                "October",
+                "November",
+                "December"
+            ];
+            let day = days[now.getDay()];
+            let date = now.getDate();
+            let month = months[now.getMonth()];
+            let year = now.getFullYear();
+
+            document.getElementById("date").innerHTML =
+            day + ", " + date + " " + month + " " + year;
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>

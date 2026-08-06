@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            min-height: 100vh;
+            padding: 20px;
+            background: #ecfeff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .quote-box{
+            width: 650px;
+            max-width: 100%;
+            padding: 40px;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        .top{
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .top h1{
+            color: #164e63;
+            font-size: 30px;
+        }
+        .tag{
+            padding: 7px 13px;
+            background: #cffafe;
+            color: #0891b2;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+        .quote-icon{
+            margin-bottom: 10px;
+            color: #06b6d4;
+            font-size: 60px;
+            line-height: 1;
+        }
+        .quote{
+            min-height: 100px;
+            color: #334155;
+            font-size: 24px;
+            line-height: 1.6;
+        }
+        .author{
+            margin-top: 20px;
+            color: #0891b2;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .line{
+            height: 1px;
+            margin: 30px 0;
+            background: #e2e8f0;
+        }
+        .actions{
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        button{
+            padding: 11px 18px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .copy-btn{
+            background: #e2e8f0;
+            color: #334155;
+        }
+        .new-btn{
+            background: #0891b2;
+            color: white;
+        }
+        .new-btn:hover{
+            background: #0e7490;
+        }
+        .copy-btn:hover{
+            background: #cbd5e1;
+        }
+        #message{
+            min-height: 20px;
+            margin-top: 18px;
+            color: #16a34a;
+            text-align: center;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <main class="quote-box">
+        <div class="top">
+            <h1>Daily Quotes</h1>
+            <span class="tag">Inspiration</span>
+        </div>
+        <div class="quote-icon">“</div>
+        <p class="quote" id="quote"></p>
+        <p class="author" id="author"></p>
+        <div class="line"></div>
+        <div class="actions">
+            <button class="copy-btn" onclick="copyQuote()">Copy Quote</button>
+            <button class="new-btn" onclick="generateQuote()">New Quote</button>
+        </div>
+        <p id="message"></p>
+    </main>
+    <script>
+        let quotes = [
+            {
+                text: "Success is the sum of small efforts repeated day after day.",
+                author: "Rebert Collier"
+            },
+            {
+                text: "The secert of getting ahead is getting started.",
+                author: "Mark Twain"
+            },
+        {
+            text: "Great things are done by a series of small things brought together.",
+            author: "Vincent van Gogh"
+        },
+        {
+            text: "Learning never exhausts the mind.",
+            author: "Leonardo do Vinci"
+        },
+        {
+            text: "It always seems impossible until it is done.",
+            author: "Nelson Mandela"
+        },
+        {
+            text: " The future depends on what you do today,",
+            author: "Mahatma Gandhi"
+        }
+        ];
+        let currentQuote = 0;
+       function generateQuote() {
+        let randomIndex = Math.floor(Math.random() * quotes.length);
+        while (randomIndex === currentQuote && quotes.length > 1){
+            randomIndex = Math.floor(Math.random() * quotes.length);
+        }
+        currentQuote = randomIndex;
+        document.getElementById("quote").innerHTML = 
+        quotes[currentQuote].text;
+        document.getElementById("author").innerHTML = 
+        "_ " + quotes[currentQuote].author;
+        document.getElementById("message").innerHTML = "";
+       } 
+
+       function copyQuote(){
+        let text = quotes[currentQuote].text;
+        let author = quotes[currentQuote].author;
+
+        navigator.clipboard.writeText(
+            '"' + text + '" _ ' + author
+        );
+        document.getElementById("message").innerHTML = 
+        "Quote copied successfully!";
+
+        setTimeout(function(){
+            document.getElementById("message").innerHTML = "";
+        }, 2000);
+       }
+       generateQuote();
+
+    </script>
+</body>
+</html>

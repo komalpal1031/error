@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: o;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            min-height: 100vh;
+            padding: 30px 20px;
+            background: #f8fafc;
+            color: #1e293b;
+        }
+        .container{
+            width: 1000px;
+            max-width: 100%;
+            margin: auto;
+        }
+        .header{
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+        }
+        .header h1{
+            margin-bottom: 5px;
+            font-size: 35px;
+        }
+        .header p{
+            color: #64748b;
+        }
+        .search{
+            width: 280px;
+            max-width: 100%;
+            padding: 11px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            outline: none;
+        }
+        .search:focus{
+            border-color: #7c3aed;
+        }
+        .note-form{
+            margin-bottom: 30px;
+            padding: 22px;
+            background: white;
+            border-radius: 12px;
+             box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+           
+        }
+        .note-form input,
+        .note-form textarea{
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            outline: none;
+            font-size: 15px;
+        }
+        .note-form input:focus,
+        .note-form textarea:focus{
+            border-color: #7c3aed;
+        }
+        .note-form textarea{
+            height: 100px;
+            margin-top: 12px;
+            resize: vertical;
+        }
+        .form-bottom{
+            margin-top: 12px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .add-btn{
+            padding: 11px 22px;
+            border: none;
+            border-radius: 7px;
+            background: #7c3aed;
+            color: white;
+            cursor: pointer;
+        }
+        .add-btn:hover{
+            background: #6d28d9;
+        }
+        .note-count{
+            margin-bottom: #6d28d9;
+        }
+        .note{
+            padding: 20px;
+            background: white;
+            border-top: 4px solid #cbd5e1;
+            border-radius: 10px;
+             box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+        }
+        .note.pinned{
+            border-top-color: #7c3aed;
+        }
+        .note h3{
+            font-size: 18px;
+        }
+        .pin{
+            padding: 5px 8px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ede9fe;
+            cursor: pointer;
+        }
+        .note-text{
+            min-height: 70px;
+            color: #64748b;
+            line-height: 1.6;
+            word-break: break-word;
+        }
+        .note-footer{
+            margin-top: 18px;
+            padding-top: 12px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .date{
+            color: #94a3b8;
+            font-size: 12px;
+        }
+        .delete-btn{
+            border: none;
+            background: none;
+            color: #dc2626;
+            cursor: pointer;
+        }
+        .empty{
+            grid-column: 1 / -1;
+            padding: 60px;
+            color: #94a3b8;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <header class="header">
+         <div>
+            <h1>My Notes</h1>
+            <p>Create and organize your quick notes.</p>
+         </div>
+         <input class="search" type="text" id="search" placeholder="Search notes........">
+        </header>
+        <section class="note-form">
+            <input type="text" id="title" placeholder="Note title......">
+            <textarea  id="content" placeholder="Write your note...."></textarea>
+            <div class="form-bottom">
+                <button class="add-btn" onclick="addNote()">Add Note</button>
+            </div>
+        </section>
+        <p class="note-count" id="noteCount">0 notes</p>
+        <section class="notes" id="notes"></section>
+    </main>
+    <script>
+        let notes = [];
+        function addNote(){
+            let title = document.getElementById("title").value.trim();
+            let content = document.getElementById("content").value.trim();
+            if (title === "" || content === "") {
+                alert("Please enter title and note.");
+                return;
+            }
+            let note = {
+                id: Date.now(),
+                title: title,
+                content: content,
+                pinned: false,
+                date: new Date().toLocaleDateString()
+            };
+            notes.push(note);
+            document.getElementById("title").value = "";
+            document.getElementById("content").value = "";
+            displayNotes();
+        }
+        function displayNotes(){
+            let search = document.getElementById("search").value.toLowerCase();
+            let container = document.getElementById("notes");
+            let filteredNotes = notes.filter(function(note){
+                let titleMatch = note.title.toLowerCase().includes(search);
+                let cantentMatch = note.content.toLowerCase().includes(search);
+                return titleMatch || contentMatch;
+            });
+            filteredNotes.sort(function(a, b){
+                return b.pinned - a.pinned;
+            });
+            container.innerHTML = "";
+            if (filteredNotes.length === 0){
+                container.innerHTML = '<p class="empty">No notes found,</p>';
+            }
+            filteredNotes.forEach(function(note){
+                let card = document.createElement("div");
+                card.className = note.pinned ? "note pinned" : "note";
+
+                card.innerHTML = `
+                <div class="note-top">
+                    <h3>${note.title}</h3>
+                    <button class="pin" onclick="togglePin(${note.id})">
+                        ${note.pinned ? "📌" :"📍" }
+                    </button>
+                    </div>
+                <p class="note-text">${note.content}</p>
+                <div class="note-footer">
+                    <span class="date">${note.date}</span>
+                <button class="delete-btn" onclick="deleteNote(${note.id})">Delete</button>
+                <div>
+             `;
+             container.appendChild(card);       
+            });
+            document.getElementById("noteCount").innerHTML =
+            filteredNotes.length + " notes";
+        }
+        function deleteNote(id){
+            notes = notes.filter(function(note){
+                return note.id !== id;
+            });
+            displayNotes();
+        }
+        function togglePin(id){
+            let note = notes.find(function(note){
+                return note.id === id;
+            });
+            note.pinned = !note.pinned;
+            displayNotes();
+        }
+        document.getElementById("search").addEventListener("input", displayNotes);
+        displayNotes();
+
+    </script>
+</body>
+</html>

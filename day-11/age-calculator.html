@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            min-height: 100vh;
+            padding: 20px;
+            background: #f3e8ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .calculator{
+            width: 650px;
+            max-width: 100%;
+            padding: 35px;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        .header{
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .header h1{
+            margin-bottom: 8px;
+            color: #581c87;
+            font-size: 35px;
+        }
+        .header p{
+            color: #64748b;
+        }
+        .inpuut-box{
+            padding: 22px;
+            background: #faf5ff;
+            border-radius: 12px;
+        }
+        label{
+            margin-bottom: 8px;
+            display: block;
+            color: #475569;
+            font-weight: bold;
+        }
+        input{
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d8b4fe;
+            border-radius: 8px;
+            outline: none;
+            font-size: 16px;
+        }
+        input:focus{
+            border-color: #9333ea;
+        }
+        .calculate-btn{
+            width: 100%;
+            margin-top: 15px;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: #9333ea;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .calculate-btn:hover{
+            background: #7e22ce;
+        }
+        .result{
+            margin-top: 25px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .result-card{
+            padding: 22px 10px;
+            background: #581c87;
+            color: white;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .result-card h2{
+            margin-bottom: 5px;
+            color: #e9d5ff;
+            font-size: 30px;
+        }
+        .result-card p{
+            font-size: 13px;
+        }
+        .message{
+            min-height: 25px;
+            margin-top: 20px;
+            color: #7e22ce;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="calculator">
+        <div class="header">
+            <h1>Age Calculator</h1>
+            <p>Enter your date of birth to calculate your age.</p>
+        </div>
+        <div class="input-box">
+            <label for="birthDate">Date of Birth</label>
+            <input type="date" id="birthDate">
+            <button class="calculate-btn" onclick="calculateAge()">Calculate Age</button>
+        </div>
+        <section class="result">
+            <div class="result-card">
+                <h2 id="years">0</h2>
+                <p>YEARS</p>
+            </div>
+            <div class="result-card">
+                <h2 id="months">0</h2>
+                <p>MONTHS</p>
+            </div>
+            <div class="result-card">
+                <h2 id="days">0</h2>
+                <p>DAYS</p>
+            </div>
+
+        </section>
+
+        <p class="message" id="message">Enter your birthday above.</p>
+    </main>
+
+    <script>
+        function calculateAge() {
+            let input = document.getElementById("birthDate").value;
+
+            if (input === "") {
+                alert("Please select your date of birth.")
+                return;
+            }
+            let birthDate = new Date(input);
+            let today = new Date();
+
+            if (birthDate > today) {
+                alert("Birth date cannot be in the future.");
+                return;
+            }
+            let years = today.getFullYear() - birthDate.getFullYear();
+            let months = today.getMonth() - birthDate.getMonth();
+            let days = today.getDate() - birthDate.getDate();
+
+            if (days < 0) {
+                months--;
+
+                let previousMonth = new Date(
+                    today.getFullYear(),
+                    today.getMonth(),
+                    0
+                );
+                days += previousMonth.getDate();
+            }
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+            document.getElementById("years").innerHTML = years;
+            document.getElementById("months").innerHTML = months;
+            document.getElementById("days").innerHTML = days;
+
+            document.getElementById("message").innerHTML = "You are " + years + " years old."
+        }
+    </script>
+</body>
+
+</html>

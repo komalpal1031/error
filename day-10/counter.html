@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            min-height: 100vhd;
+            padding: 40px 20px;
+            background: #eef2ff;
+            color: #1e293b;
+        }
+        .container{
+            width: 850px;
+            max-width: 100%;
+            margin: auto;
+        }
+        .header{
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .header h1{
+            margin-bottom: 8px;
+            font-size: 38px;
+        }
+        .header p{
+            color: #64748b;
+        }
+        .editor{
+            padding: 25px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        textarea{
+            width: 100%;
+            height: 280px;
+            padding: 18px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            outline: none;
+            resize: vertical;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        textarea.focus{
+            border-color: #4f46e5;
+        }
+        .limit{
+            margin-top: 8px;
+            color: #64748b;
+            align-items: right;
+            font-size: 13px;
+        }
+        .limit.warning{
+            color: #dc2626;
+        }
+        .stats{
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        .stat{
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .stat h2{
+            margin-bottom: 5px;
+            color: #4f46e5;
+            font-size: 28px;
+        }
+        .stat p{
+             color: #64748b;
+             font-size: 13px;
+        }
+        .actions{
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        button{
+            padding: 11px 20px;
+            border: none;
+            border-radius: 7px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .clear-btn{
+            background: #dc2626;
+            color: white;
+        }
+        .sample-btn{
+            background: #4f46e5;
+            color: white;
+        }
+        button:hover{
+            opacity: 0.85;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <div class="header">
+            <h1>Text Analyzer</h1>
+            <p>Write somthing and analyze your text instantly</p>
+        </div>
+        <section class="editor">
+            <textarea id="textInput" maxlength="1000" placeholder="Start typing here.........."></textarea>
+            <p class="limit" id="limit">0 / 1000 characters</p>
+            <div class="stats">
+                <div class="stat">
+                    <h2 id="characters">0</h2>
+                    <p>CHARACTERS</p>
+                </div>
+                <div class="stat">
+                    <h2 id="words">0</h2>
+                    <p>WORDS</p>
+                </div>
+                <div class="stat">
+                    <h2 id="sentences">0</h2>
+                    <p>SENTENCE</p>
+                </div>
+                <div class="stat">
+                    <h2 id="readingTime">0</h2>
+                    <p>MIN READ</p>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="clear-btn" onclick="clearText()">CLera Text</button>
+                <button class="sample-btn" onclick="addSample()">Add Sample</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let textInput = document.getElementById("textInput");
+
+        textInput.addEventListener("input", function(){
+            analyzeText();
+        });
+        function analyzeText(){
+            let text = textInput.value;
+            let cleanText = text.trim();
+            let characters = text.length;
+            let words = cleanText === ""
+               ? 0
+               : cleanText.split(/\s+/).length
+            let sentenceList = cleanText.split(/[.!?]+/);
+            let sentence = 0;
+            sentenceList.forEach(function(sentence){
+                if (sentence.trim() !== ""){
+                    sentences++;
+                }
+            });
+            let readingTime = Math.ceil(words / 200);
+            document.getElementById("characters").innerHTML = characters;
+            document.getElementById("words").innerHTML = words;
+            document.getElementById("sentences").innerHTML = sentences;
+            document.getElementById("readingTime").innerHTML = readingTime;
+            document.getElementById("limit").innerHTML = characters + " / 1000 charachters";
+
+            if (characters >= 900){
+                document.getElementById("limit").classList.add("warning");
+            } else {
+                document.getElementById("limit").classList.remove("warning");
+            }
+        }
+        function clearText(){
+            textInput.value = "";
+            analyzeText();
+            textInput.focus();
+        }
+        function addSample(){
+            textInput.value = "Learning JavaScript takes regualr practice. Build small projects every day. Understand the logic instead of only copying in code."
+            analyzeText();
+        }
+    </script>
+</body>
+</html>

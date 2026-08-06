@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            min-height: 100vh;
+            padding: 40px 20px;
+            background: #f8fafc;
+            color: #1e293b;
+        }
+        .caontainer{
+            width: 900px;
+            max-width: 100%;
+            margin: auto;
+        }
+        .header{
+            margin-bottom: 30px;
+            align-items: center;
+        }
+        .header h1{
+            margin-bottom: 8px;
+            font-size: 38px;
+        }
+        .header p{
+            color: #64748b;
+        }
+        .calculator {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+        .input-card,
+        .result-card{
+            padding: 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+        .input-card h2,
+        .result-card h2{
+            margin-bottom: 25px;
+        }
+        .form-group{
+            margin-bottom: 20px;
+        }
+        .form-group label{
+            margin-bottom: 8px;
+            display: block;
+            color: #475569;
+            font-weight: bold;
+        }
+        .form-group input{
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            outline: none;
+            font-size: 16px;
+        }
+        .form-group input:focus{
+            border-color: #6366f1;
+        }
+        .calculate-btn{
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: #6366f1;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .calculate-btn:hover{
+            background: #4f46e5;
+        }
+        .result-card{
+            text-align: center;
+        }
+        .bmi-circle{
+            width: 180px;
+            height: 180px;
+            margin: 20px auto;
+            border: 12px solid #e2e8f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .bmi-circle h3{
+            font-size: 42px;
+        }
+        .bmi-circle p{
+            color: #64748b;
+        }
+        .status{
+            margin: 20px 0 10px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .description{
+            color: #64748b;
+            line-height: 1.6;
+        }
+        .underweight{
+            color: #0284c7;
+        }
+        .normal{
+            color: #16a34a;
+        }
+        .overweight{
+            color: #f59e0b;
+        }
+        .obese{
+            color: #dc2626;
+        }
+        .range-box{
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 10px;
+            text-align: left;
+        }
+        .range{
+            padding: 8px 0;
+        }
+        .range:last-child{
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+       <div class="header">
+        <h1>BMI Calculator</h1>
+        <p>Enter your height and weight to calculate your BMI.</p>
+       </div>
+       <section class="calculator">
+        <div class="input-card">
+            <h2>Your Details</h2>
+
+            <div class="form-group">
+                <label for="height">Height (cm)</label>
+                <input type="number" id="height" placeholder="Example: 165">
+            </div>
+
+             <div class="form-group">
+                <label for="weight">Weight (cm)</label>
+                <input type="number" id="weight" placeholder="Example: 60">
+            </div>
+
+            <button class="calculate-btn" onclick="calculateBMI()">Calculate BMI</button>
+            <div class="range-box">
+                <div class="range">
+                    <span>Underweight</span>
+                    <strong>Below 18.5</strong>
+                </div>
+                <div class="range">
+                    <span>Normal</span>
+                    <strong>18.5 - 24.9</strong>
+                </div>
+                <div class="range">
+                    <span>Overweight</span>
+                    <strong>25 - 29.9</strong>
+                </div>
+                <div class="range">
+                    <span>Obese</span>
+                    <strong>30+</strong>
+                </div>
+            </div>
+        </div>
+             
+        <div class="result-card">
+            <h2>Your Result</h2>
+            <div class="bmi-circle">
+                <h3 id="bmiValue">--</h3>
+                <p>BMI</p>
+            </div>
+            <div class="status" id="status">Enter your details</div>
+            <p class="description" id="description">Your BMI result will appear here after calculation.</p>
+        </div>
+       </section>
+    </main>
+
+    <script>
+        function calculateBMI(){
+            let height = Number(document.getElementById("height").value);
+            let weight = Number(document.getElementById("weight").value);
+            let status = document.getElementById("status");
+            let description = document.getElementById("description");
+
+            if(height <= 0 || weight <= 0){
+                alert("Please enter Valid height and weight.")
+                return;
+            }
+            let heightMeter = height / 100;
+            let bmi = weight / (heightMeter * heightMeter);
+
+            document.getElementById("bmiValue").innerHTML = bmi.toFixed(1);
+            status.className = "status";
+            if (bmi < 18.5){
+                status.innerHTML = "Underweight";
+                status.classList.add("underweight");
+                description.innerHTML = "Your BMI is below the normal range.";
+            }else if (bmi < 25) {
+                status.innerHTML = "Normal";
+                status.classList.add("normal");
+                description.innerHTML = "Your BMI is within the standard normal range.";
+            } else if (bmi < 30) {
+                status.innerHTML = "Overweight";
+                status.classList.add("overweight");
+                description.innerHTML = "Your BMI is above the normal range.";
+            } else {
+                status.innerHTML = "Obese";
+                status.classList.add("obese");
+                description.innerHTML = "Your BMI is in obesity range."
+            }
+        }
+    </script>
+</body>
+</html>

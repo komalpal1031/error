@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: o;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            min-height: 100vh;
+            padding: 50px 20px;
+            background: #f1f5f9;
+            color: #1e293d;
+        }
+        .container{
+            width: 650px;
+            max-width: 100%;
+            margin: auto;
+        }
+        .header{
+            margin-bottom: 25px;
+        }
+        .header p{
+            color: #64748b;
+        }
+        .task-box{
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+        .input-box{
+            display: flex;
+            gap: 10px;
+        }
+        input-box input{
+            flex: 1;
+            padding: 13px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            outline: none;
+            font-size: 15px;
+        }
+        .input-box input:focus{
+            border-color: #2563eb;
+        }
+        .add-btn{
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+        }
+        .add-btn:hover{
+            background: #1d4ed8;
+        }
+        .filters{
+            margin: 25px 9 15px;
+            display: flex;
+            gap: 8px;
+        }
+        .filter-btn{
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            background: #e2e8f0;
+            color: #475569;
+            cursor: pointer;
+        }
+        .filter-btn{
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            background: #e2e8f0;
+            color: #475569;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .filter-btn.active{
+            background: #2563eb;
+            color: white;
+        }
+        .task{
+            padding: 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .task input{
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .task p{
+            flex: 1;
+        }
+        .task.completed p{
+            color: #94a3d8;
+            text-decoration: line-through;
+        }
+        .delete-btn{
+            padding: 7px 12px;
+            border: none;
+            border-radius: 6px;
+            background: #fee2e2;
+            color: #dc2626;
+            cursor: pointer;
+        }
+        .delete-btn:hover{
+            background: #dc2626;
+            color: white;
+        }
+        .empty{
+            padding: 30px;
+            color: #94a3b8;
+            text-align: center;
+        }
+        .footer{
+            margin-top: 20px;
+            padding-top: 18px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <div class="header">
+            <h1>My Tasks</h1>
+            <p>Organize your work and complete your daily goals.</p>
+        </div>
+
+        <section class="task-box">
+          <div class="input-box">
+            <input type="text" id="taskInput" placeholder="Enter a new task...">
+            <button class="add-btn" onclick="addTask()">Add Task</button>
+          </div>
+
+          <div class="filters">
+            <button class="filter-btn active" onclick="filterTasks('all, this')">All</button>
+            <button class="filter-btn" onclick="filterTasks('active', this)">Active</button>
+            <button class="filter-btn" onclick="filterTasks('completed', this)">Completed</button>
+          </div>
+          
+
+          <div id="taskList"></div>
+          <div class="footer">
+            <span><strong id="taskCount">0</strong>tasks left</span>
+            <span id="completedCount">0 completed</span>
+          </div>
+        </section>
+    </main>
+
+    <script>
+        let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        let currentFilter = "all";
+        function addTask(){
+            let input = document.getElementById("taskInput");
+            let text = input.value.trim();
+
+            if (text === "") {
+                alert("please enter a task.");
+                return;
+            }
+            let task = {
+                text: text,
+                completed: false
+            };
+            tasks.push(task);
+            input.value = "";
+
+            saveTasks();
+            displayTasks();
+        }
+        function displayTasks(){
+          let list = document.getElementById("taskList");
+          list.innerHTML = "";
+          
+          let visibleTasks = tasks.filter(function(task){
+            if (currentFilter === "active") return !task.completed;
+            if (currentFilter === "completed") return task.completed;
+            return true;
+          });
+          visibleTasks.forEach(function(task){
+            let index = tasks.indexOf(task);
+            let item = document.createElement("div");
+
+            item.className = task.completed ? "task completed" : "task";
+            item.innerHTML = `
+            <input type="checkbox" ${task.completed ? "checked" : ""} onclick="toggleTask(${index})">
+            <p>${task.text}</p>
+            <button class="delete-btn" onclick="deleteTask(${index})">Delete</button>
+            `;
+            list.appendChild(item);
+          });
+          if (visibleTasks.length === 0){
+            list.innerHTML = '<p class="empty">No tasks found.</p>';
+          }
+          updateCount();
+        }
+        function toggleTask(index){
+            tasks[index].completed = !tasks[index].completed;
+            saveTasks();
+            displayTasks();
+        }
+        function deleteTask(index){
+            tasks.splice(index, 1);
+            saveTasks();
+            displayTasks();
+        }
+        function filterTasks(filter, button){
+            currentFilter = filter;
+            document.querySelectorAll(".filter-btn").forEach(function(btn){
+                btn.classList.remove("active");
+            });
+            button.classList.add("active");
+            displayTasks();
+        }
+        function updateCount(){
+          let active = tasks.filter(function(task){
+            return !task.completed;
+          }).length; 
+          documnet.getElementById("taskCount").innerHTML = active;
+          document.getElementById("completedCount").innerHTML = completed + " completed";
+        }
+        function saveTasks(){
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+        }
+        document.getElementById("taskInput").addEventListener("keydown", function(event){
+            if (event.key === "Enter"){
+                addTask();
+            }
+        });
+        displayTasks();
+    </script>
+</body>
+</html>

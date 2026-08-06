@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            min-height: 100vh;
+            background: #f8fafc;
+            color: #1e293b;
+        }
+        header{
+            padding: 20px 7%;
+            background: #111827;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo{
+            font-size: 26px;
+            font-weight: bold;
+        }
+        .search{
+            width: 300px;
+            padding: 11px 15px;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+        }
+        .container{
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+        .top {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .top h1{
+            font-size: 34px;
+        }
+        .add-btn{
+            padding: 11px 20px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+        }
+        .add-btn:hover{
+            background: #1d4ed8;
+        }
+        .notes{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+        .note{
+            min-height: 220px;
+            padding: 22px;
+            background: white;
+            border-radius: 14px;
+            position: relative;
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.08);
+        }
+        .note h3{
+            margin-bottom: 12px;
+            padding-right: 20px;
+        }
+        .note p{
+            margin-bottom: 50px;
+            color: #64748b;
+            line-height: 1.6;
+            word-break: break-word;
+        }
+        .actions{
+            position: absolute;
+            right: 18px;
+            bottom: 18px;
+            display: flex;
+            gap: 8px;
+        }
+        .actions button{
+            padding: 7px 11px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .edit-btn{
+            background: #dbeafe;
+            color: #2563eb;
+        }
+        .delete-btn{
+            background: #fee2e2;
+            color: #dc2626;
+        }
+        .empty{
+            grid-column: 1 / -1;
+            padding: 50px;
+            color: #94a3b8;
+            text-align: center;
+        }
+        .modal{
+            position: fixed;
+            inset: 0;
+            padding: 20px;
+            background: rgba(15, 23, 42, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal.show{
+            display: flex;
+        }
+        .modal-box{
+            width: 450px;
+            max-width: 100%;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+        }
+        .modal-box h2{
+            margin-bottom: 20px;
+        }
+        .modal-box input,
+        .modal-box textarea{
+            width: 100%;
+            margin-bottom: 12px;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            outline: none;
+        }
+        .modal-box textarea{
+            height: 140px;
+            resize: none;
+        }
+        .modal-box input:focus,
+        .modal-box textarea:focus{
+            border-color: #2563eb;
+        }
+        .modal-actions{
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        .modal-actions button{
+            padding: 10px 18px;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+        .cancel-btn{
+            background: #e2e8f0;
+        }
+        .save-btn{
+            background: #2563eb;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+   <header>
+    <div class="logo">QuickNotes</div>
+    <input class="search" type="text" id="search" placeholder="Search notes...">
+   </header> 
+   <main class="container">
+     <div class="top">
+        <div>
+            <h1>My Notes</h1>
+            <p>Save your ideas and important information.</p>
+            </div>
+            <button class="add-btn" onclick="openModal">+ New Note</button>
+        </div>
+
+        <section class="notes" id="notes"></section>
+   </main>
+   <div class="modal" id="modal">
+    <div class="modal-box">
+        <h2 id="modalTitle">Create Note</h2>
+        <input type="text" id="noteTitle" placeholder="Note title">
+        <textarea id="noteText" placeholder="Write your note..."></textarea>
+        <div class="modal-actions">
+            <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+            <button class="save-btn" onclick="saveNote()">Save Note</button>
+        </div>
+    </div>
+   </div>
+
+   <script>
+    let notes =JSON.parse(localStorage.getItem("notes")) || [];
+    let editIndex = null;
+    function openModal(index = null){
+        editIndex = index;
+        let title = document.getElementById("noteTitle");
+        let text = document.getElementById("noteText");
+
+        if (index !== null) {
+            title.value = notes[index].title;
+            text.value = notes[index].text;
+            document.getElementById("modalTitle").innerHTML = "Edit Note";
+        } else {
+            title.value = "";
+            text.value = "";
+            document.getElementById("modalTitle").innerHTML = "Create Note";
+        }
+        document.getElementById("modal").classList.add("show");
+    }
+    function closeModal(){
+        document.getElementById("modal").classList.remove("show");
+    }
+    function saveNote(){
+        let title = document.getElementById("noteTitle").value.trim();
+        let text = document.getElementById("noteText").value.trim();
+
+        if (title === "" || text === ""){
+            alert("Please enter title and note.");
+            return;
+        }
+        let note = {
+            title: title,
+            text:text
+        };
+        if (editIndex === null){
+            notes.push(note);
+        } else {
+            notes[editIndex] = note;
+        }
+        saveData();
+        displayNotes();
+        closeModal();
+    }
+    function displayNotes(searchtext = ""){
+        let container = document.getElementById("notes");
+        container.innerHTML = "";
+
+        let found = 0;
+
+        notes.forEach(function(note, index){
+            let title = note.title.toLowerCase();
+            let text = note.text.toLowerCase();
+        
+            if(!title.includes(searchText) && !text.includes(searchText)) {
+                return;
+            }
+            let card = document.createElement("div");
+            card.className = "note";
+
+            card.innerHTML = `
+            <h3>${note.title}</h3>
+                    <p>${note.text}</p>
+
+                    <div class="actions">
+                        <button class="edit-btn" onclick="openModal(${index})">Edit</button>
+                        <button class="delete-btn" onclick="deleteNote(${index})">Delete</button>
+                    </div>
+                `;
+                container.appendChild(card);
+                found++;
+        });
+       if (found === 0) {
+                container.innerHTML = '<p class="empty">No notes found.</p>';
+            }
+    }
+    function deleteNote(index){
+        notes.splice(index, 1);
+        saveData();
+        displayNotes();
+    }
+    function saveData(){
+        localStorage.setItem("notes", JSON.stringify(notes));
+    }
+    document.getElementById("search").addEventListener("input", function(){
+        let text = this.value.toLowerCase();
+        displayNotes(text);
+    });
+    document.getElementById("modal").addEventListener("click", function(event){
+        if (event.target === this){
+            closeModal();
+        }
+    });
+    displayNotes();
+    
+   </script>
+</body>
+</html>

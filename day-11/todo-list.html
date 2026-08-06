@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            padding: 30px 20px;
+            background: #f0fdf4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .todo{
+            width: 650px;
+            max-width: 100%;
+            padding: 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
+        }
+        .header{
+            margin-bottom: 25px;
+        }
+        .header h1{
+            margin-bottom: 7px;
+            color: #64748b;
+            font-size: 32px;
+        }
+        .header p{
+            color: #64748b;
+        }
+        .add-box{
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .add-box input{
+            flex: 1;
+            min-width: 0;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            outline: none;
+        }
+        .add-box input:focus{
+            border-color: #16a34a;
+        }
+        .add-btn{
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            background: #16a34a;
+            color: white;
+            cursor: pointer;
+        }
+        .filters{
+            margin-bottom: 20px;
+            display: flex;
+            gap: 8px;
+        }
+        .filter-btn{
+            padding: 8px 14px;
+            border: none;
+            border-radius: 20px;
+            background: #e2e8f0;
+            cursor: pointer;
+        }
+        .filter-btn.active{
+            background: #16a34a;
+            color: white;
+        }
+        .task{
+            margin-bottom: 10px;
+            padding: 14px;
+            border: 1px solid #e2e8f0;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .task-text{
+            flex: 1;
+            word-break: break-word;
+        }
+        .task.completed .task-text{
+            color: #94a3b8;
+            text-decoration: line-through;
+        }
+        .check-btn{
+            width: 27px;
+            height: 27px;
+            border: 2px solid #16a34a;
+            border-radius: 50%;
+            background: white;
+            color: white;
+            cursor: pointer;
+        }
+        .task.completed .check-btn{
+            background: #16a34a;
+        }
+        .delete-btn{
+            padding: 7px 10px;
+            border: none;
+            border-radius: 6px;
+            background: #fee2e2;
+            color: #dc2626;
+            cursor: pointer;
+        }
+        .footer{
+            margin-top: 20px;
+            padding-top: 18px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .footer p{
+            color: #64748b;
+            font-size: 14px;
+        }
+        .clear-btn{
+            border: none;
+            background: none;
+            color: #dc2626;
+            cursor: pointer;
+        }
+        .empty{
+            padding: 40px;
+            color: #94a3b8;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <main class="todo">
+       <header class="header">
+         <h1>My Tasks</h1>
+         <p>organize your daily work.</p>
+       </header>
+       <div class="add-box">
+        <input type="text" id="taskInput" placeholder="Enter a new task...">
+        <button class="add-btn" onclick="addTask()">Add Task</button>
+       </div>
+       <div class="filters">
+        <button class="filter-btn active" onclick="changeFilter('all', this)">All</button>
+        <button class="filter-btn" onclick="changeFilter('active', this)">Active</button>
+        <button class="filter-btn" onclick="changeFilter('completed', this)">Completed</button>
+       </div>
+       <section id="taskList"></section>
+       <footer class="footer">
+        <p><span id="taskCount">0</span>tasks remaining</p>
+        <button class="clear-btn" onclick="clearCompleted()">Clear Completed</button>
+       </footer>
+    </main> 
+
+    <script>
+        let tasks = [];
+        let currentFilter = "all";
+
+        function addTask(){
+            let input = document.getElementById("taskInput");
+            let text = input.value.trim();
+            
+            if (text === ""){
+                alert("Please enter a task.");
+                return;
+            }
+            let task = {
+                id: Date.now(),
+                text: text,
+                completed: false 
+            };
+            tasks.push(task);
+            input.value = "";
+            displayTasks();
+        }
+        function displayTasks(){
+            let container = document.getElementById("taskList");
+            let filteredTasks = tasks.filter(function(task){
+                if (currentFilter === "active"){
+                    return task.completed === false;
+                }
+                if (currentFilter === "completed"){
+                    return task.completed === true;
+                }
+                return true;
+            });
+            container.innerHTML = "";
+            if (filteredTasks.length === 0) {
+                container.innerHTML = '<p class="empty">No tasks found.</p>'
+            }
+            filteredTasks.forEach(function(task){
+                let item = document.createElement("div");
+
+                item.className = task.completed ?
+                "task completed" : "task";
+                item.innerHTML = `
+                <button class="check-btn" onclick="toggleTask(${task.id})">
+                    ${task.completed ? "✓" : ""}
+                </button>
+                <p class="task-text">${task.text}</p>
+                <button class="delete-btn" onclick="deleteTask(${task.id})">
+                    Delete
+                    </button>
+                `;
+                container.appendChild(item);        
+            });
+            updateCount();
+        }
+        function toggleTask(id){
+            let task = tasks.find(function(task){
+                return task.id === id;
+            });
+            task.completed = !task.completed;
+            displayTasks();
+        }
+        function deleteTask(id){
+            tasks = tasks.filter(function(task){
+                return task.id !== id;
+            });
+            displayTasks();
+        }
+        function changeFilter(filter, button){
+            currentFilter = filter;
+            document.querySelectorAll(".filter-btn").forEach(function(btn){
+                btn.classList.remove("active");
+            });
+            button.classList.add("active");
+            displayTasks();
+        }
+        function updateCount(){
+            let remaining = tasks.filter(function(task){
+                return task.completed === false;
+            });
+            document.getElementById("taskCount").innerHTML = remaining.length;
+        }
+        function clearCompleted(){
+            tasks = tasks.filter(function(task){
+                return task.completed === false;
+            });
+            displayTasks();
+        }
+        document.getElementById("taskInput").addEventListener("keydown", function(event){
+            if (event.key === "Enter"){
+                addTask();
+            }
+        });
+        displayTasks();
+    </script>
+</body>
+</html>

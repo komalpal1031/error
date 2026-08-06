@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f8fafc;
+            color: #1e293b;
+        }
+
+        header {
+            padding: 20px 7%;
+            background: #111827;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .cart {
+            padding: 9px 16px;
+            background: #2563eb;
+            border-radius: 20px;
+        }
+
+        .hero {
+            padding: 55px 20px;
+            background: #e0e7ff;
+            text-align: center;
+        }
+
+        .hero h1 {
+            margin-bottom: 10px;
+            font-size: 40px;
+        }
+
+        .hero p {
+            color: #64748b;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 35px auto;
+        }
+
+        .tools {
+            margin-bottom: 30px;
+            padding: 18px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+        }
+
+        .search {
+            width: 320px;
+            max-width: 100%;
+            padding: 11px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            outline: none;
+        }
+
+        .search:focus {
+            border-color: #2563eb;
+        }
+
+        .filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 9px 15px;
+            border: none;
+            border-radius: 20px;
+            background: #e2e8f0;
+            cursor: pointer;
+        }
+
+        .filter-btn.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        .result-info {
+            margin-bottom: 15px;
+            color: #64748b;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .product {
+            overflow: hidden;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+            transition: 0.3s;
+        }
+
+        .product img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 17px;
+        }
+
+        .category {
+            margin-bottom: 7px;
+            color: #2563eb;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .product h3 {
+            margin-bottom: 8px;
+        }
+
+        .price {
+            margin-bottom: 15px;
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 7px;
+            background: #111827;
+            color: white;
+            cursor: pointer;
+        }
+
+        .buy-btn:hover {
+            background: #2563eb;
+        }
+
+        .empty {
+            grid-column: 1 / -1;
+            padding: 60px;
+            color: #94a3b8;
+            text-align: center;
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">NovaStore</div>
+        <div class="cart">Cart <span id="cartCount">0</span></div>
+    </header>
+    <section class="hero">
+        <h1>Explore Products</h1>
+        <p>Search and filter products using JavaScript</p>
+    </section>
+    <main class="container">
+        <section class="tools">
+            <input class="search" type="text" id="search" placeholder="Search products.....">
+            <div class="filters">
+              <button class="filter-btn active" onclick="changeCategory('all', this)">All</button>
+<button class="filter-btn" onclick="changeCategory('tech', this)">Tech</button>
+<button class="filter-btn" onclick="changeCategory('fashion', this)">Fashion</button>
+<button class="filter-btn" onclick="changeCategory('home', this)">Home</button>  
+            </div>
+        </section>
+        <p class="result-info" id="resultInfo"></p>
+        <section class="products" id="products"></section>
+    </main>
+
+    <script>
+        let products = [
+            {
+                name: "Wireless Headphones",
+                category: "tech",
+                price: 2499,
+                image: "https://picsum.photos/400/300?random=51"
+            },
+            {
+                name: "Smart Watch",
+                category: "tech",
+                price: 3999,
+                image: "https://picsum.photos/400/300?random=52"
+            },
+            {
+                name: "Laptop Stand",
+                category: "tech",
+                price: 1299,
+                image: "https://picsum.photos/400/300?random=53"
+            },
+            {
+                name: "Casual Shoes",
+                category: "fashion",
+                price: 2499,
+                image: "https://picsum.photos/400/300?random=54"
+            },
+            {
+                name: "Travel Backpack",
+                category: "fashion",
+                price: 1499,
+                image: "https://picsum.photos/400/300?random=55"
+            },
+            {
+                name: "Classic Jacket",
+                category: "fashion",
+                price: 2999,
+                image: "https://picsum.photos/400/300?random=56"
+            },
+            {
+                name: "Table Lamp",
+                category: "home",
+                price: 899,
+                image: "https://picsum.photos/400/300?random=57"
+            },
+            {
+                name: "Coffee Mug",
+                category: "home",
+                price: 499,
+                image: "https://picsum.photos/400/300?random=58"
+            },
+        ];
+        let currentCategory = "all";
+        let cartCount = 0;
+        function displayProducts() {
+            let search = document.getElementById("search").value.toLowerCase();
+            let filtered = products.filter(function (product) {
+                let categoryMatch = currentCategory === "all" ||
+                    product.category == currentCategory;
+
+                let searchMatch = product.name.toLowerCase().includes(search);
+                return categoryMatch && searchMatch;
+            });
+            let container = document.getElementById("products");
+            container.innerHTML = "";
+            filtered.forEach(function (product) {
+                let card = document.createElement("div");
+                card.className = "product";
+
+                card.innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+                    <div class="product-info">
+                        <p class="category">${product.category}</p>
+                        <h3>${product.name}</h3>
+                        <p class="price">₹${product.price}</p>
+                        <button class="buy-btn" onclick="addToCart()">Add to Cart</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            document.getElementById("resultInfo").innerHTML =
+                filtered.length + " Products found";
+            if (filtered.length === 0) {
+                container.innerHTML = '<p class="empty">Np products found.</p>';
+            }
+        }
+        function changeCategory(category, button) {
+            currentCategory = category;
+            document.querySelectorAll(".filter-btn").forEach(function (btn) {
+                btn.classList.remove("active");
+            });
+            button.classList.add("active");
+            displayProducts();
+        }
+        function addToCart() {
+            cartCount++;
+            document.getElementById("cartCount").innerHTML = cartCount;
+        }
+        document.getElementById("search").addEventListener("input", displayProducts);
+        displayProducts();
+    </script>
+</body>
+
+</html>

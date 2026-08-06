@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            min-height: 100vh;
+            padding: 40px 20px;
+            background: #0f172a;
+            color: white;
+        }
+        .container{
+            width: 650px;
+            max-width: 100%;
+            margin: auto;
+            text-align: center;
+        }
+        h1{
+            margin-bottom: 8px;
+            font-size: 40px;
+        }
+        .subtitle{
+            margin-bottom: 25px;
+            color: #94a3b8;
+        }
+        .stats{
+            margin-bottom: 25px;
+            padding: 15px 25px;
+            background: #1e293b;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .stat p{
+            margin-bottom: 5px;
+            color: #94a3b8;
+            font-size: 13px;
+        }
+        .stat h3{
+            font-size: 20xp;
+        }
+        .game-board{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        .card{
+            height: 125px;
+            border: none;
+            border-radius: 12px;
+            background: #2563eb;
+            color: transparent;
+            font-size: 45px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .card:hover{
+            background: #3b82f6;
+            transform: translateY(-3px);
+        }
+        .card.open{
+            background: white;
+            color: #111827;
+            transform: rotateY(180deg);
+        }
+        .card.matched{
+            background: #22c55e;
+            color: white;
+            cursor: default;
+            transform: scale(0.95);
+        }
+        .restart-btn{
+            margin-top: 25px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            background: #f59e0b;
+            color: #111827;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .restart-btn:hover{
+            background: #fbbf24;
+        }
+        #message{
+            min-height: 30px;
+            margin-top: 20px;
+            color: #4ade80;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <h1>Memory Game</h1>
+        <p class="subtitle">Find all matching pairs to win the game.</p>
+        <section class="stats">
+            <div class="stat">
+                <p>MOVES</p>
+                <h3 id="moves">0</h3>
+            </div>
+            <div class="stat">
+                <p>MATCHES</p>
+                <h3><span id="matches">0</span> /6</h3>
+            </div>
+            <div class="stat">
+                <p>CARDS</p>
+                <h3>12</h3>
+            </div>
+        </section>
+
+        <section class="game-board" id="gameBoard"></section>
+        <p id="message"></p>
+        <button class="restart-btn" onclick="startGame()">Restart Game</button>
+    </main>
+
+    <script>
+        let symbols =["🍕", "🚀", "🎮", "🎧", "⚽", "🍩"];
+        let cards =[];
+        let firstCard = null;
+        let secondCard = null;
+        let moves = 0;
+        let matches = 0;
+        let locked = false;
+
+        function startGame(){
+            cards = [...symbols, ...symbols];
+            cards.sort(function(){
+                return Math.random() - 0.5;
+            });
+           
+            firstCard = null;
+            secondCard = null;
+            moves =  0;
+            matches = 0;
+            locked = false;
+
+            document.getElementById("moves").innerHTML = 0;
+            document.getElementById("matches").innerHTML = 0;
+            document.getElementById("message").innerHTML = "";
+            createCards();
+
+        }
+
+        function createCards(){
+           
+            let board =document.getElementById("gameBoard");
+            board.innerHTML = "";
+            console.log(cards)
+            cards.forEach(function(symbol){
+                let card = document.createElement("button");
+                card.className = "card";
+                card.innerHTML = symbol;
+                card.dataset.symbol = symbol;
+
+                card.addEventListener("click", function(){
+                    flipCard(card);               
+                 });
+                 board.appendChild(card);
+            });
+            
+        }
+        function flipCard(card){
+            if (locked) return;
+            if (card === firstCard) return;
+            if (card.classList.contains("matched")) return;
+            card.classList.add("open");
+            
+            if (firstCard === null){
+                firstCard = card;
+                return;
+            }
+            secondCard = card;
+            moves++;
+            document.getElementById("moves").innerHTML = moves;
+            checkMatch();
+
+        }
+        function checkMatch(){
+            let firstSymbol = firstCard.dataset.symbol;
+            let secondSymbol = secondCard.dataset.symbol;
+
+            if(firstSymbol === secondSymbol){
+                firstCard.classList.add("matched");
+                secondCard.classList.add("matched");
+                matches++;
+                document.getElementById("matches").innerHTML = matches;
+                resetCards();
+                if (matches === symbols.length){
+                    document.getElementById("message").innerHTML = "🎉 You won in " + moves + " moves!";
+                }
+            } else {
+              locked = true;
+              
+              setTimeout(function(){
+                firstCard.classList.remove("open");
+                secondCard.classList.remove("open");
+
+                resetCards();
+                locked = false;
+              }, 800);
+           
+            }
+        }
+        function resetCards(){
+            firstCard = null;
+            secondCard = null;
+        }
+        startGame();
+    </script>
+</body>
+</html>

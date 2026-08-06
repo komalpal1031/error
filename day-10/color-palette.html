@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body{
+            min-height: 100vh;
+            padding: 40px 20px;
+            background: #f8fafc;
+            color: #1e293b;
+        }
+        .container{
+            width: 1000px;
+            max-width: 100%;
+            margin: auto;
+        }
+        .header{
+            margin-bottom: 35px;
+            text-align: center;
+        }
+        .header h1{
+            margin-bottom: 10px;
+            font-size: 38px;
+        }
+        .header p{
+            color: #64748b;
+        }
+        .palette{
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+        }
+        .color{
+            height: 250px;
+            border-radius: 10px;
+        }
+        .color-info{
+            padding: 15px 5px 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 5px;
+        }
+        .color-code{
+            font-size: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .copy-btn{
+            padding: 7px 10px;
+            border: none;
+            border-radius: 6px;
+            background: #e2e8f0;
+            cursor: pointer;
+        }
+        .copy-btn:hover{
+            background: #cbd5e1;
+        }
+        .actions{
+            margin-top: 30px;
+            text-align: center;
+        }
+        .generate-btn{
+            padding: 13px 25px;
+            border: none;
+            border-radius: 8px;
+            background: #111827;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .generate-btn:hover{
+            background: #334155;
+        }
+        #message{
+            min-height: 25px;
+            margin-top: 15px;
+            color: #16a34a;
+            font-size: 14px;
+        }
+        .tip{
+            margin-top: 35px;
+            padding: 18px;
+            background: #e0e7ff;
+            border-radius: 10px;
+            color: #4338ca;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <div class="header">
+            <h1>Color palette Generator</h1>
+            <p>Generator random colors and copy their HEX codes.</p>
+        </div>
+
+        <section class="palette" id="palette"></section>
+        <div class="actions">
+            <button class="generate-btn" onclick="generatePalette()">Generator New Palette</button>
+            <p id="message"></p>
+        </div>
+        <div class="tip">
+            Press the button to generate five new random colors.
+        </div>
+    </main>
+    <script>
+        function generateColor(){
+            let charaaters = "0123456789ABCDEF";
+            let color = "#";
+            
+            for (let i = 0; i < 6; i++){
+                let randomIndex = Math.floor(Math.random() * 16);
+                color += charaaters[randomIndex];
+            }
+            return color;
+        }
+
+        function generatePalette(){
+            let palette = document.getElementById("palette");
+            palette.innerHTML = "";
+            for (let i = 0; i < 5; i++){
+                let color = generateColor();
+                let card = document.createElement("div");
+
+                card.innerHTML = `
+                 <div class="color" style="background:${color}"></div>
+                    <div class="color-info">
+                        <span class="color-code">${color}</span>
+                        <button class="copy-btn" onclick="copyColor('${color}')">Copy</button>
+                    </div>
+                `;
+                palette.appendChild(card);
+            }
+            document.getElementById("message").innerHTML = "";
+        }
+        function copyColor(color){
+            navigator.clipboard.writeText(color);
+            document.getElementById("message").innerHTML = 
+            color + " copied to clipboard!";
+
+            setTimeout(function(){
+                document.getElementById("message").innerHTML = "";
+            }, 2000);
+        }
+        generatePalette();
+    </script>
+</body>
+</html>
